@@ -1,0 +1,539 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghost Quiz | آزمون</title><style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Tahoma,Arial,sans-serif;
+min-height:100vh;
+background:
+radial-gradient(circle at top,#302718 0,#110f0b 45%,#050504 100%);
+color:#f3e7c3;
+}
+
+header{
+background:rgba(7,6,4,.95);
+border-bottom:1px solid #80612b;
+padding:14px;
+}
+
+.top{
+max-width:900px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.logo{
+color:#dfba62;
+font-family:Georgia,serif;
+font-size:20px;
+font-weight:bold;
+}
+
+.stats{
+display:flex;
+gap:7px;
+}
+
+.stat{
+background:#15120c;
+border:1px solid #51401f;
+border-radius:7px;
+padding:7px 10px;
+font-size:12px;
+}
+
+.stat span{
+color:#e2bb60;
+font-weight:bold;
+}
+
+.container{
+max-width:750px;
+margin:auto;
+padding:35px 16px 60px;
+}
+
+.category{
+text-align:center;
+color:#b59a5d;
+font-size:13px;
+margin-bottom:10px;
+}
+
+h1{
+font-family:Georgia,serif;
+text-align:center;
+font-size:28px;
+color:#e3c273;
+margin-bottom:25px;
+}
+
+.progressBox{
+height:8px;
+background:#211c12;
+border:1px solid #49391e;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:30px;
+}
+
+.progress{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#806021,#e0bc65);
+transition:.3s;
+}
+
+.questionCard{
+background:
+linear-gradient(145deg,#19150d,#0c0b08);
+border:1px solid #635025;
+border-radius:8px;
+padding:28px 20px;
+box-shadow:0 10px 35px rgba(0,0,0,.45);
+}
+
+.number{
+color:#a78a4d;
+font-size:12px;
+margin-bottom:16px;
+}
+
+.question{
+font-family:Georgia,serif;
+font-size:21px;
+line-height:1.9;
+color:#f0dfb2;
+margin-bottom:25px;
+}
+
+.answers{
+display:grid;
+gap:11px;
+}
+
+.answer{
+width:100%;
+text-align:right;
+padding:15px;
+border-radius:7px;
+border:1px solid #51401f;
+background:#11100c;
+color:#d8c79e;
+font-family:Tahoma,Arial,sans-serif;
+font-size:14px;
+cursor:pointer;
+transition:.2s;
+}
+
+.answer:hover{
+border-color:#c19a48;
+transform:translateX(-3px);
+}
+
+.answer.correct{
+background:#18301e;
+border-color:#5d9a68;
+color:#bde4c2;
+}
+
+.answer.wrong{
+background:#321918;
+border-color:#9a514b;
+color:#e5aaa4;
+}
+
+.answer.disabled{
+pointer-events:none;
+}
+
+.result{
+display:none;
+text-align:center;
+margin-top:25px;
+padding:18px;
+border:1px solid #70572a;
+background:#17130c;
+border-radius:7px;
+}
+
+.result h2{
+color:#e3bf67;
+margin-bottom:8px;
+}
+
+.next{
+display:none;
+width:100%;
+margin-top:18px;
+padding:14px;
+border:0;
+border-radius:6px;
+background:linear-gradient(135deg,#d4aa4f,#886425);
+color:#080704;
+font-weight:bold;
+font-size:15px;
+cursor:pointer;
+}
+
+.next:hover{
+filter:brightness(1.1);
+}
+
+.final{
+display:none;
+text-align:center;
+background:#14110b;
+border:1px solid #80612c;
+padding:30px 20px;
+border-radius:8px;
+}
+
+.finalIcon{
+font-size:55px;
+margin-bottom:15px;
+}
+
+.final h2{
+font-family:Georgia,serif;
+font-size:27px;
+color:#e5c16b;
+margin-bottom:15px;
+}
+
+.final p{
+color:#b8aa8a;
+line-height:2;
+}
+
+.restart{
+margin-top:22px;
+padding:13px 30px;
+border:1px solid #d0a94e;
+background:#bd9340;
+color:#090806;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
+}
+
+@media(max-width:500px){
+
+h1{
+font-size:24px;
+}
+
+.question{
+font-size:18px;
+}
+
+.questionCard{
+padding:22px 14px;
+}
+
+.logo{
+font-size:16px;
+}
+
+}
+</style></head><body><header>
+<div class="top"><div class="logo">
+👑 Ghost Quiz
+</div><div class="stats"><div class="stat">
+🪙 <span id="coins">500</span>
+</div><div class="stat">
+⭐ <span id="xp">0</span>
+</div></div></div>
+</header><main class="container"><div class="category" id="categoryName">
+میراث پارس
+</div><h1>
+آزمون تاریخی
+</h1><div class="progressBox">
+<div class="progress" id="progress"></div>
+</div><div id="quizArea"><div class="questionCard"><div class="number" id="questionNumber">
+سؤال ۱ از ۱۰
+</div><div class="question" id="question">
+در حال آماده‌سازی سؤال...
+</div><div class="answers" id="answers">
+</div><div class="result" id="result"><h2 id="resultTitle"></h2><p id="resultText"></p></div><button class="next" id="nextBtn" onclick="nextQuestion()">
+سؤال بعدی ←
+</button></div></div><div class="final" id="final"><div class="finalIcon">🏆</div><h2>آزمون به پایان رسید</h2><p id="finalText"></p><button class="restart" onclick="restartQuiz()">
+دوباره بازی کن
+</button></div></main><script>
+
+const questions=[
+
+{
+q:"کوروش بزرگ بنیان‌گذار کدام شاهنشاهی بود؟",
+a:[
+"شاهنشاهی هخامنشی",
+"شاهنشاهی ساسانی",
+"شاهنشاهی اشکانی",
+"امپراتوری روم"
+],
+correct:0
+},
+
+{
+q:"پایتخت تشریفاتی مشهور هخامنشیان چه نام داشت؟",
+a:[
+"تخت جمشید",
+"بابل",
+"مدائن",
+"شوش"
+],
+correct:0
+},
+
+{
+q:"کوروش بزرگ به کدام دودمان تاریخی ایران تعلق داشت؟",
+a:[
+"هخامنشیان",
+"ساسانیان",
+"اشکانیان",
+"صفویان"
+],
+correct:0
+},
+
+{
+q:"پاسارگاد با کدام شخصیت تاریخی ارتباط ویژه دارد؟",
+a:[
+"کوروش بزرگ",
+"داریوش سوم",
+"خشایارشا",
+"اردشیر بابکان"
+],
+correct:0
+},
+
+{
+q:"کتیبه مشهور منشور کوروش به چه زبانی نوشته شده بود؟",
+a:[
+"اکدی",
+"فارسی نو",
+"لاتین",
+"یونانی"
+],
+correct:0
+},
+
+{
+q:"داریوش بزرگ چه نقشی در توسعه تخت جمشید داشت؟",
+a:[
+"ساخت و گسترش آن را آغاز کرد",
+"آن را در دوره ساسانی ساخت",
+"آن را به روم واگذار کرد",
+"آن را به شهر دیگری منتقل کرد"
+],
+correct:0
+},
+
+{
+q:"هخامنشیان در کدام منطقه از جهان حکومت می‌کردند؟",
+a:[
+"بخش بزرگی از غرب آسیا و مناطق پیرامون آن",
+"فقط اروپا",
+"فقط آفریقا",
+"فقط شرق آسیا"
+],
+correct:0
+},
+
+{
+q:"کدام بنا آرامگاه منسوب به کوروش بزرگ است؟",
+a:[
+"آرامگاه پاسارگاد",
+"طاق کسری",
+"برج میلاد",
+"ارگ بم"
+],
+correct:0
+},
+
+{
+q:"کدام شهر از مراکز مهم هخامنشیان بود؟",
+a:[
+"شوش",
+"رم",
+"پاریس",
+"لندن"
+],
+correct:0
+},
+
+{
+q:"کدام شخصیت پس از کوروش بزرگ به قدرت رسید؟",
+a:[
+"کمبوجیه دوم",
+"اردشیر یکم",
+"خشایارشا",
+"داریوش سوم"
+],
+correct:0
+}
+
+];
+
+
+let current=0;
+let score=0;
+let coins=Number(localStorage.getItem("ghostCoins")) || 500;
+let xp=Number(localStorage.getItem("ghostXP")) || 0;
+
+document.getElementById("coins").textContent=coins;
+document.getElementById("xp").textContent=xp;
+
+
+function loadQuestion(){
+
+const q=questions[current];
+
+document.getElementById("questionNumber").textContent=
+"سؤال "+(current+1)+" از "+questions.length;
+
+document.getElementById("question").textContent=q.q;
+
+document.getElementById("progress").style.width=
+((current)/questions.length*100)+"%";
+
+const answers=document.getElementById("answers");
+
+answers.innerHTML="";
+
+q.a.forEach((answer,index)=>{
+
+const button=document.createElement("button");
+
+button.className="answer";
+
+button.textContent=answer;
+
+button.onclick=()=>checkAnswer(button,index);
+
+answers.appendChild(button);
+
+});
+
+document.getElementById("result").style.display="none";
+document.getElementById("nextBtn").style.display="none";
+
+}
+
+
+function checkAnswer(button,index){
+
+const q=questions[current];
+
+const buttons=document.querySelectorAll(".answer");
+
+buttons.forEach(b=>{
+b.classList.add("disabled");
+});
+
+if(index===q.correct){
+
+button.classList.add("correct");
+
+score++;
+
+coins+=20;
+xp+=10;
+
+document.getElementById("resultTitle")
+.textContent="درست است! 👑";
+
+document.getElementById("resultText")
+.textContent="+۲۰ سکه و +۱۰ XP";
+
+}else{
+
+button.classList.add("wrong");
+
+buttons[q.correct].classList.add("correct");
+
+document.getElementById("resultTitle")
+.textContent="پاسخ نادرست";
+
+document.getElementById("resultText")
+.textContent=
+"پاسخ درست: "+q.a[q.correct];
+
+}
+
+localStorage.setItem("ghostCoins",coins);
+localStorage.setItem("ghostXP",xp);
+
+document.getElementById("coins").textContent=coins;
+document.getElementById("xp").textContent=xp;
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("nextBtn").style.display="block";
+
+}
+
+
+function nextQuestion(){
+
+current++;
+
+if(current>=questions.length){
+
+finishQuiz();
+
+return;
+}
+
+loadQuestion();
+
+}
+
+
+function finishQuiz(){
+
+document.getElementById("quizArea").style.display="none";
+
+document.getElementById("final").style.display="block";
+
+document.getElementById("progress").style.width="100%";
+
+document.getElementById("finalText").innerHTML=
+"امتیاز شما: <strong>"+score+
+" از "+questions.length+
+"</strong><br><br>"+
+"🪙 سکه‌های شما: "+coins+
+"<br>"+
+"⭐ XP شما: "+xp;
+
+}
+
+
+function restartQuiz(){
+
+current=0;
+score=0;
+
+document.getElementById("quizArea").style.display="block";
+
+document.getElementById("final").style.display="none";
+
+loadQuestion();
+
+}
+
+
+loadQuestion();
+
+</script></body>
+</html>
