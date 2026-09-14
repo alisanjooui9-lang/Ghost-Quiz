@@ -1,0 +1,429 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ghost Quiz | نتیجه آزمون</title><style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Tahoma,Arial,sans-serif;
+min-height:100vh;
+color:#f3e6c1;
+background:
+radial-gradient(circle at top,#332918 0,#120f0a 42%,#050504 100%);
+}
+
+header{
+background:rgba(7,6,4,.96);
+border-bottom:1px solid #80612b;
+padding:14px;
+}
+
+.top{
+max-width:900px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+font-family:Georgia,serif;
+font-size:20px;
+font-weight:bold;
+color:#e2bc65;
+}
+
+.back{
+text-decoration:none;
+color:#c9aa65;
+border:1px solid #5b4723;
+padding:8px 12px;
+border-radius:6px;
+font-size:12px;
+}
+
+.container{
+max-width:850px;
+margin:auto;
+padding:45px 16px 60px;
+}
+
+.hero{
+text-align:center;
+margin-bottom:25px;
+}
+
+.crown{
+font-size:60px;
+margin-bottom:10px;
+}
+
+.hero h1{
+font-family:Georgia,serif;
+font-size:34px;
+color:#e5c16c;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:13px;
+color:#a99b7b;
+}
+
+.resultCard{
+background:
+linear-gradient(145deg,#1b160d,#0b0a07);
+border:1px solid #70572a;
+border-radius:10px;
+padding:30px 20px;
+box-shadow:0 15px 45px rgba(0,0,0,.55);
+}
+
+.scoreCircle{
+width:150px;
+height:150px;
+margin:0 auto 25px;
+border-radius:50%;
+border:3px solid #bd9547;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:
+radial-gradient(circle,#2b2110,#0c0a07);
+box-shadow:
+0 0 35px rgba(190,150,65,.15);
+}
+
+.scoreCircle strong{
+font-family:Georgia,serif;
+font-size:42px;
+color:#e6c474;
+}
+
+.scoreCircle span{
+font-size:12px;
+color:#a99a78;
+margin-top:5px;
+}
+
+.rank{
+text-align:center;
+padding:15px;
+border:1px solid #59451f;
+background:#13100a;
+border-radius:7px;
+margin-bottom:20px;
+}
+
+.rankTitle{
+font-size:12px;
+color:#978968;
+margin-bottom:7px;
+}
+
+.rankName{
+font-family:Georgia,serif;
+font-size:25px;
+color:#dfb95e;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.stat{
+background:#100e0a;
+border:1px solid #4e3d20;
+border-radius:7px;
+padding:18px 12px;
+text-align:center;
+}
+
+.statIcon{
+font-size:25px;
+margin-bottom:8px;
+}
+
+.statTitle{
+font-size:11px;
+color:#8f846c;
+margin-bottom:6px;
+}
+
+.statValue{
+font-size:19px;
+font-weight:bold;
+color:#d8b762;
+}
+
+.record{
+margin-top:15px;
+padding:18px;
+border:1px solid #80632d;
+border-radius:7px;
+background:
+linear-gradient(135deg,#1d170c,#0d0b07);
+text-align:center;
+}
+
+.recordTitle{
+font-size:12px;
+color:#a39475;
+margin-bottom:8px;
+}
+
+.recordValue{
+font-family:Georgia,serif;
+font-size:24px;
+color:#e3c16d;
+}
+
+.actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:22px;
+}
+
+button,
+.action{
+padding:14px;
+border-radius:7px;
+font-family:Tahoma,Arial,sans-serif;
+font-weight:bold;
+font-size:13px;
+cursor:pointer;
+text-decoration:none;
+text-align:center;
+}
+
+.primary{
+border:1px solid #d2aa51;
+background:linear-gradient(135deg,#d4aa4f,#896528);
+color:#090806;
+}
+
+.secondary{
+border:1px solid #5d4924;
+background:#14110b;
+color:#cbb274;
+}
+
+.primary:hover,
+.secondary:hover,
+.back:hover{
+transform:translateY(-2px);
+}
+
+footer{
+text-align:center;
+padding:25px;
+color:#665e4c;
+font-size:11px;
+}
+
+footer strong{
+color:#9d8146;
+}
+
+@media(max-width:500px){
+
+.container{
+padding-top:30px;
+}
+
+.hero h1{
+font-size:28px;
+}
+
+.crown{
+font-size:50px;
+}
+
+.scoreCircle{
+width:135px;
+height:135px;
+}
+
+.scoreCircle strong{
+font-size:36px;
+}
+
+.actions{
+grid-template-columns:1fr;
+}
+
+}
+
+</style></head><body><header><div class="top"><div class="logo">
+👑 Ghost Quiz
+</div><a href="index.html" class="back">
+بازگشت
+</a></div></header><main class="container"><section class="hero"><div class="crown">🏆</div><h1>
+نتیجه آزمون
+</h1><p>
+آفرین! نتیجه تلاش تو آماده است
+</p></section><section class="resultCard"><div class="scoreCircle"><strong id="score">
+0
+</strong><span>
+امتیاز آزمون
+</span></div><div class="rank"><div class="rankTitle">
+رتبه تاریخی شما
+</div><div class="rankName" id="rank">
+شاگرد تاریخ
+</div></div><div class="grid"><div class="stat"><div class="statIcon">🎯</div><div class="statTitle">
+پاسخ‌های درست
+</div><div class="statValue" id="correct">
+0
+</div></div><div class="stat"><div class="statIcon">❌</div><div class="statTitle">
+پاسخ‌های نادرست
+</div><div class="statValue" id="wrong">
+0
+</div></div><div class="stat"><div class="statIcon">⭐</div><div class="statTitle">
+XP کل
+</div><div class="statValue" id="xp">
+0
+</div></div><div class="stat"><div class="statIcon">🪙</div><div class="statTitle">
+سکه‌ها
+</div><div class="statValue" id="coins">
+0
+</div></div></div><div class="record"><div class="recordTitle">
+🏛️ بهترین رکورد شما
+</div><div class="recordValue"><span id="record">
+0
+</span>
+از 10</div></div><div class="actions"><button class="primary" onclick="playAgain()">
+🔄 آزمون دوباره
+</button><a href="index.html" class="action secondary">
+🏛️ صفحه اصلی
+</a></div></section></main><footer><strong>Ghost Quiz</strong>
+
+<br><br>
+
+میراث پارس • دانش • تاریخ
+
+</footer><script>
+
+let score =
+Number(localStorage.getItem("quizScore")) || 0;
+
+let total =
+Number(localStorage.getItem("quizTotal")) || 10;
+
+let xp =
+Number(localStorage.getItem("ghostXP")) || 0;
+
+let coins =
+Number(localStorage.getItem("ghostCoins")) || 500;
+
+let record =
+Number(localStorage.getItem("quizRecord")) || 0;
+
+
+/* RECORD */
+
+if(score > record){
+
+record = score;
+
+localStorage.setItem(
+"quizRecord",
+record
+);
+
+}
+
+
+/* DISPLAY SCORE */
+
+document.getElementById("score")
+.textContent =
+score + " / " + total;
+
+
+/* CORRECT */
+
+document.getElementById("correct")
+.textContent = score;
+
+
+/* WRONG */
+
+document.getElementById("wrong")
+.textContent =
+Math.max(0,total-score);
+
+
+/* XP */
+
+document.getElementById("xp")
+.textContent = xp;
+
+
+/* COINS */
+
+document.getElementById("coins")
+.textContent = coins;
+
+
+/* RECORD */
+
+document.getElementById("record")
+.textContent = record;
+
+
+/* RANK */
+
+let percentage =
+(score / total) * 100;
+
+let rank =
+"شاگرد تاریخ";
+
+
+if(percentage >= 90){
+
+rank = "👑 استاد تاریخ";
+
+}else if(percentage >= 75){
+
+rank = "🏛️ تاریخ‌دان بزرگ";
+
+}else if(percentage >= 60){
+
+rank = "📜 پژوهشگر تاریخ";
+
+}else if(percentage >= 40){
+
+rank = "🛡️ سرباز تاریخ";
+
+}else{
+
+rank = "📖 شاگرد تاریخ";
+
+}
+
+
+document.getElementById("rank")
+.textContent = rank;
+
+
+/* PLAY AGAIN */
+
+function playAgain(){
+
+window.location.href =
+"quiz.html";
+
+}
+
+</script></body>
+</html>
