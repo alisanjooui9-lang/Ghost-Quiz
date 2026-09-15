@@ -1,539 +1,1480 @@
 <!DOCTYPE html><html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ghost Quiz | آزمون</title><style>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>آزمون | Ghost Quiz</title><style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-font-family:Tahoma,Arial,sans-serif;
-min-height:100vh;
-background:
-radial-gradient(circle at top,#302718 0,#110f0b 45%,#050504 100%);
-color:#f3e7c3;
-}
-
-header{
-background:rgba(7,6,4,.95);
-border-bottom:1px solid #80612b;
-padding:14px;
-}
-
-.top{
-max-width:900px;
-margin:auto;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-}
-
-.logo{
-color:#dfba62;
-font-family:Georgia,serif;
-font-size:20px;
-font-weight:bold;
-}
-
-.stats{
-display:flex;
-gap:7px;
-}
-
-.stat{
-background:#15120c;
-border:1px solid #51401f;
-border-radius:7px;
-padding:7px 10px;
-font-size:12px;
-}
-
-.stat span{
-color:#e2bb60;
-font-weight:bold;
+    font-family:Tahoma,Arial,sans-serif;
+    min-height:100vh;
+    color:#f5d77a;
+    background:
+        radial-gradient(circle at top,#3a2a0b 0%,#15110a 35%,#050505 80%);
 }
 
 .container{
-max-width:750px;
-margin:auto;
-padding:35px 16px 60px;
+    width:min(94%,720px);
+    margin:auto;
+    padding:20px 0 40px;
 }
 
-.category{
-text-align:center;
-color:#b59a5d;
-font-size:13px;
-margin-bottom:10px;
-}
-
-h1{
-font-family:Georgia,serif;
-text-align:center;
-font-size:28px;
-color:#e3c273;
-margin-bottom:25px;
-}
-
-.progressBox{
-height:8px;
-background:#211c12;
-border:1px solid #49391e;
-border-radius:20px;
-overflow:hidden;
-margin-bottom:30px;
-}
-
-.progress{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#806021,#e0bc65);
-transition:.3s;
-}
-
-.questionCard{
-background:
-linear-gradient(145deg,#19150d,#0c0b08);
-border:1px solid #635025;
-border-radius:8px;
-padding:28px 20px;
-box-shadow:0 10px 35px rgba(0,0,0,.45);
-}
-
-.number{
-color:#a78a4d;
-font-size:12px;
-margin-bottom:16px;
-}
-
-.question{
-font-family:Georgia,serif;
-font-size:21px;
-line-height:1.9;
-color:#f0dfb2;
-margin-bottom:25px;
-}
-
-.answers{
-display:grid;
-gap:11px;
-}
-
-.answer{
-width:100%;
-text-align:right;
-padding:15px;
-border-radius:7px;
-border:1px solid #51401f;
-background:#11100c;
-color:#d8c79e;
-font-family:Tahoma,Arial,sans-serif;
-font-size:14px;
-cursor:pointer;
-transition:.2s;
-}
-
-.answer:hover{
-border-color:#c19a48;
-transform:translateX(-3px);
-}
-
-.answer.correct{
-background:#18301e;
-border-color:#5d9a68;
-color:#bde4c2;
-}
-
-.answer.wrong{
-background:#321918;
-border-color:#9a514b;
-color:#e5aaa4;
-}
-
-.answer.disabled{
-pointer-events:none;
-}
-
-.result{
-display:none;
-text-align:center;
-margin-top:25px;
-padding:18px;
-border:1px solid #70572a;
-background:#17130c;
-border-radius:7px;
-}
-
-.result h2{
-color:#e3bf67;
-margin-bottom:8px;
-}
-
-.next{
-display:none;
-width:100%;
-margin-top:18px;
-padding:14px;
-border:0;
-border-radius:6px;
-background:linear-gradient(135deg,#d4aa4f,#886425);
-color:#080704;
-font-weight:bold;
-font-size:15px;
-cursor:pointer;
-}
-
-.next:hover{
-filter:brightness(1.1);
-}
-
-.final{
-display:none;
-text-align:center;
-background:#14110b;
-border:1px solid #80612c;
-padding:30px 20px;
-border-radius:8px;
-}
-
-.finalIcon{
-font-size:55px;
-margin-bottom:15px;
-}
-
-.final h2{
-font-family:Georgia,serif;
-font-size:27px;
-color:#e5c16b;
-margin-bottom:15px;
-}
-
-.final p{
-color:#b8aa8a;
-line-height:2;
-}
-
-.restart{
-margin-top:22px;
-padding:13px 30px;
-border:1px solid #d0a94e;
-background:#bd9340;
-color:#090806;
-border-radius:6px;
-font-weight:bold;
-cursor:pointer;
-}
-
-@media(max-width:500px){
-
-h1{
-font-size:24px;
-}
-
-.question{
-font-size:18px;
-}
-
-.questionCard{
-padding:22px 14px;
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px;
+    border:1px solid #9b7625;
+    border-radius:18px;
+    background:#120f09;
 }
 
 .logo{
-font-size:16px;
+    font-size:20px;
+    font-weight:bold;
 }
 
-}
-</style></head><body><header>
-<div class="top"><div class="logo">
-👑 Ghost Quiz
-</div><div class="stats"><div class="stat">
-🪙 <span id="coins">500</span>
-</div><div class="stat">
-⭐ <span id="xp">0</span>
-</div></div></div>
-</header><main class="container"><div class="category" id="categoryName">
-میراث پارس
-</div><h1>
-آزمون تاریخی
-</h1><div class="progressBox">
-<div class="progress" id="progress"></div>
-</div><div id="quizArea"><div class="questionCard"><div class="number" id="questionNumber">
-سؤال ۱ از ۱۰
-</div><div class="question" id="question">
-در حال آماده‌سازی سؤال...
-</div><div class="answers" id="answers">
-</div><div class="result" id="result"><h2 id="resultTitle"></h2><p id="resultText"></p></div><button class="next" id="nextBtn" onclick="nextQuestion()">
-سؤال بعدی ←
-</button></div></div><div class="final" id="final"><div class="finalIcon">🏆</div><h2>آزمون به پایان رسید</h2><p id="finalText"></p><button class="restart" onclick="restartQuiz()">
-دوباره بازی کن
-</button></div></main><script>
-
-const questions=[
-
-{
-q:"کوروش بزرگ بنیان‌گذار کدام شاهنشاهی بود؟",
-a:[
-"شاهنشاهی هخامنشی",
-"شاهنشاهی ساسانی",
-"شاهنشاهی اشکانی",
-"امپراتوری روم"
-],
-correct:0
-},
-
-{
-q:"پایتخت تشریفاتی مشهور هخامنشیان چه نام داشت؟",
-a:[
-"تخت جمشید",
-"بابل",
-"مدائن",
-"شوش"
-],
-correct:0
-},
-
-{
-q:"کوروش بزرگ به کدام دودمان تاریخی ایران تعلق داشت؟",
-a:[
-"هخامنشیان",
-"ساسانیان",
-"اشکانیان",
-"صفویان"
-],
-correct:0
-},
-
-{
-q:"پاسارگاد با کدام شخصیت تاریخی ارتباط ویژه دارد؟",
-a:[
-"کوروش بزرگ",
-"داریوش سوم",
-"خشایارشا",
-"اردشیر بابکان"
-],
-correct:0
-},
-
-{
-q:"کتیبه مشهور منشور کوروش به چه زبانی نوشته شده بود؟",
-a:[
-"اکدی",
-"فارسی نو",
-"لاتین",
-"یونانی"
-],
-correct:0
-},
-
-{
-q:"داریوش بزرگ چه نقشی در توسعه تخت جمشید داشت؟",
-a:[
-"ساخت و گسترش آن را آغاز کرد",
-"آن را در دوره ساسانی ساخت",
-"آن را به روم واگذار کرد",
-"آن را به شهر دیگری منتقل کرد"
-],
-correct:0
-},
-
-{
-q:"هخامنشیان در کدام منطقه از جهان حکومت می‌کردند؟",
-a:[
-"بخش بزرگی از غرب آسیا و مناطق پیرامون آن",
-"فقط اروپا",
-"فقط آفریقا",
-"فقط شرق آسیا"
-],
-correct:0
-},
-
-{
-q:"کدام بنا آرامگاه منسوب به کوروش بزرگ است؟",
-a:[
-"آرامگاه پاسارگاد",
-"طاق کسری",
-"برج میلاد",
-"ارگ بم"
-],
-correct:0
-},
-
-{
-q:"کدام شهر از مراکز مهم هخامنشیان بود؟",
-a:[
-"شوش",
-"رم",
-"پاریس",
-"لندن"
-],
-correct:0
-},
-
-{
-q:"کدام شخصیت پس از کوروش بزرگ به قدرت رسید؟",
-a:[
-"کمبوجیه دوم",
-"اردشیر یکم",
-"خشایارشا",
-"داریوش سوم"
-],
-correct:0
+.stats{
+    display:flex;
+    gap:8px;
 }
 
-];
+.stat{
+    background:#241b0b;
+    border:1px solid #80631f;
+    border-radius:10px;
+    padding:7px 9px;
+    font-size:12px;
+}
+
+.title-box{
+    text-align:center;
+    padding:25px 10px 15px;
+}
+
+.crown{
+    font-size:48px;
+}
+
+h1{
+    font-size:25px;
+    margin:8px 0;
+}
+
+.category-name{
+    color:#c9b77d;
+    font-size:13px;
+}
+
+.progress-wrap{
+    margin:15px 0;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    color:#a89563;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.progress{
+    height:8px;
+    background:#29230f;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#8f6818,#f5d77a);
+    transition:.3s;
+}
+
+.card{
+    background:linear-gradient(145deg,#1b160d,#090909);
+    border:1px solid #9b7625;
+    border-radius:22px;
+    padding:20px;
+    box-shadow:0 0 30px rgba(212,167,62,.1);
+}
+
+.question{
+    color:#fff2c5;
+    font-size:19px;
+    line-height:1.9;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.options{
+    display:grid;
+    gap:11px;
+}
+
+.option{
+    width:100%;
+    border:1px solid #6d541d;
+    border-radius:14px;
+    padding:15px;
+    background:#15120c;
+    color:#ead07b;
+    font-family:inherit;
+    font-size:14px;
+    cursor:pointer;
+    text-align:right;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#2a210f;
+    border-color:#b58b2b;
+}
+
+.option.correct{
+    background:#17301b;
+    border-color:#4caf50;
+    color:#bff0c4;
+}
+
+.option.wrong{
+    background:#35130f;
+    border-color:#c0392b;
+    color:#ffc1ba;
+}
+
+.option:disabled{
+    cursor:default;
+}
+
+.feedback{
+    min-height:28px;
+    text-align:center;
+    margin-top:16px;
+    line-height:1.8;
+    font-size:13px;
+}
+
+.next-btn{
+    display:none;
+    width:100%;
+    border:0;
+    border-radius:14px;
+    padding:14px;
+    margin-top:12px;
+    background:linear-gradient(135deg,#d4af37,#8f6818);
+    color:#160f04;
+    font-family:inherit;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.next-btn.show{
+    display:block;
+}
+
+.exit{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    color:#89794f;
+    font-size:12px;
+    margin-top:20px;
+}
+
+.result{
+    text-align:center;
+    padding:20px 5px;
+}
+
+.result-icon{
+    font-size:65px;
+}
+
+.result h2{
+    margin:10px 0;
+    color:#f5d77a;
+}
+
+.result p{
+    color:#c9b77d;
+    line-height:2;
+}
+
+.loading{
+    text-align:center;
+    color:#c9b77d;
+    padding:30px;
+}
+
+@media(max-width:430px){
+    .question{
+        font-size:17px;
+    }
+
+    .option{
+        padding:14px 12px;
+    }
+
+    .stats{
+        gap:4px;
+    }
+
+    .stat{
+        padding:6px;
+        font-size:10px;
+    }
+}
+</style></head><body><div class="container"><div class="header">
+
+    <div class="logo">
+        👻 Ghost Quiz
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            🪙 <span id="coins">0</span>
+        </div>
+
+        <div class="stat">
+            ⭐ <span id="xp">0</span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="title-box">
+
+    <div class="crown">👑</div>
+
+    <h1>آزمون Ghost Quiz</h1>
+
+    <div class="category-name" id="categoryName">
+        دانستنی‌ها
+    </div>
+
+</div>
+
+<div class="progress-wrap">
+
+    <div class="progress-info">
+        <span>پیشرفت آزمون</span>
+        <span>
+            <span id="currentNumber">1</span>
+            /
+            <span id="totalNumber">10</span>
+        </span>
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+</div>
+
+<div class="card" id="quizCard">
+
+    <div class="loading" id="loading">
+        در حال آماده‌سازی آزمون...
+    </div>
+
+    <div id="quizContent" style="display:none;">
+
+        <div class="question" id="question"></div>
+
+        <div class="options" id="options"></div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button
+            class="next-btn"
+            id="nextBtn"
+            onclick="nextQuestion()">
+
+            سؤال بعدی ➜
+
+        </button>
+
+    </div>
+
+</div>
+
+<a href="categories.html" class="exit">
+    ← بازگشت به دسته‌بندی‌ها
+</a>
+
+</div><script>
+
+/* =========================
+   اطلاعات اولیه
+========================= */
+
+let coins =
+    Number(localStorage.getItem("ghostCoins")) || 500;
+
+let xp =
+    Number(localStorage.getItem("ghostXP")) || 0;
+
+document.getElementById("coins").textContent = coins;
+document.getElementById("xp").textContent = xp;
 
 
-let current=0;
-let score=0;
-let coins=Number(localStorage.getItem("ghostCoins")) || 500;
-let xp=Number(localStorage.getItem("ghostXP")) || 0;
+/* =========================
+   دسته‌بندی
+========================= */
 
-document.getElementById("coins").textContent=coins;
-document.getElementById("xp").textContent=xp;
+const params =
+    new URLSearchParams(location.search);
+
+const selectedCategory =
+    params.get("category") || "history";
+
+const categoryNames = {
+
+    ancient_iran:"ایران باستان",
+
+    cyrus:"کوروش بزرگ",
+
+    achaemenid:"هخامنشیان",
+
+    persepolis:"تخت جمشید",
+
+    history:"تاریخ ایران",
+
+    world_history:"تاریخ جهان",
+
+    leaders:"شاهان و فرمانروایان",
+
+    civilizations:"تمدن‌ها",
+
+    countries:"کشورها",
+
+    cities:"شهرها",
+
+    football:"فوتبال",
+
+    games:"بازی‌ها",
+
+    science:"علم",
+
+    technology:"تکنولوژی",
+
+    animals:"حیوانات",
+
+    logic:"هوش و منطق",
+
+    knowledge:"دانستنی‌ها"
+
+};
+
+document.getElementById("categoryName").textContent =
+    categoryNames[selectedCategory] || "دانستنی‌ها";
 
 
-function loadQuestion(){
+/* =========================
+   بانک سؤال
+========================= */
 
-const q=questions[current];
+const questionBank = {
 
-document.getElementById("questionNumber").textContent=
-"سؤال "+(current+1)+" از "+questions.length;
+    ancient_iran:[
+        {
+            q:"کوروش بزرگ بنیان‌گذار کدام سلسله بود؟",
+            o:["هخامنشیان","ساسانیان","اشکانیان","صفویان"],
+            a:0
+        },
+        {
+            q:"آرامگاه کوروش بزرگ در کجا قرار دارد؟",
+            o:["پاسارگاد","تخت جمشید","شوش","بابل"],
+            a:0
+        },
+        {
+            q:"کدام تمدن پیش از هخامنشیان در ایران قدرت زیادی داشت؟",
+            o:["مادها","روم","مصر","یونان"],
+            a:0
+        },
+        {
+            q:"تخت جمشید مربوط به کدام امپراتوری است؟",
+            o:["هخامنشی","روم","مغول","عثمانی"],
+            a:0
+        },
+        {
+            q:"شوش یکی از شهرهای مهم کدام دوره بود؟",
+            o:["هخامنشی","وایکینگ","آزتک","قرون وسطی اروپا"],
+            a:0
+        },
+        {
+            q:"داریوش بزرگ از پادشاهان کدام سلسله بود؟",
+            o:["هخامنشی","ساسانی","صفوی","قاجار"],
+            a:0
+        },
+        {
+            q:"پاسارگاد بیشتر با نام چه کسی شناخته می‌شود؟",
+            o:["کوروش بزرگ","اسکندر","چنگیز","نادرشاه"],
+            a:0
+        },
+        {
+            q:"کتیبه بیستون در زمان کدام پادشاه ایجاد شد؟",
+            o:["داریوش بزرگ","کوروش بزرگ","کمبوجیه","خشایارشا"],
+            a:0
+        },
+        {
+            q:"هخامنشیان در کدام منطقه شکل گرفتند؟",
+            o:["ایران","اسپانیا","ژاپن","مکزیک"],
+            a:0
+        },
+        {
+            q:"کدام شهر از مراکز مهم هخامنشیان بود؟",
+            o:["شوش","لندن","پاریس","توکیو"],
+            a:0
+        }
+    ],
 
-document.getElementById("question").textContent=q.q;
+    cyrus:[
+        {
+            q:"کوروش بزرگ بنیان‌گذار چه امپراتوری‌ای بود؟",
+            o:["هخامنشی","روم","عثمانی","ساسانی"],
+            a:0
+        },
+        {
+            q:"آرامگاه کوروش در کجا قرار دارد؟",
+            o:["پاسارگاد","شوش","اصفهان","تبریز"],
+            a:0
+        },
+        {
+            q:"کوروش بر کدام شهر بزرگ باستانی پیروز شد؟",
+            o:["بابل","رم","آتن","اسکندریه"],
+            a:0
+        },
+        {
+            q:"پاسارگاد با کدام پادشاه ارتباط ویژه دارد؟",
+            o:["کوروش بزرگ","داریوش سوم","نادرشاه","اردشیر بابکان"],
+            a:0
+        },
+        {
+            q:"کوروش در کدام دوره تاریخی زندگی می‌کرد؟",
+            o:["دوره هخامنشی","دوره ساسانی","دوره صفوی","دوره قاجار"],
+            a:0
+        },
+        {
+            q:"کدام عنوان برای کوروش رایج است؟",
+            o:["کوروش بزرگ","داریوش بزرگ","خشایار بزرگ","اردشیر بزرگ"],
+            a:0
+        },
+        {
+            q:"کوروش چه نقشی در تاریخ ایران دارد؟",
+            o:["بنیان‌گذار امپراتوری هخامنشی","آخرین شاه قاجار","بنیان‌گذار صفویه","پادشاه ساسانی"],
+            a:0
+        },
+        {
+            q:"پایتخت تشریفاتی مهم هخامنشیان که بعدها ساخته شد چه نام داشت؟",
+            o:["تخت جمشید","مدائن","تیسفون","ری"],
+            a:0
+        },
+        {
+            q:"کدام شهر با فرمانروایی کوروش ارتباط تاریخی دارد؟",
+            o:["بابل","لندن","مسکو","پکن"],
+            a:0
+        },
+        {
+            q:"جانشین کوروش بزرگ چه کسی بود؟",
+            o:["کمبوجیه دوم","داریوش اول","خشایارشا","داریوش سوم"],
+            a:0
+        }
+    ],
 
-document.getElementById("progress").style.width=
-((current)/questions.length*100)+"%";
+    achaemenid:[
+        {
+            q:"هخامنشیان توسط چه کسی بنیان‌گذاری شدند؟",
+            o:["کوروش بزرگ","داریوش سوم","خشایارشا","اردشیر بابکان"],
+            a:0
+        },
+        {
+            q:"تخت جمشید مربوط به کدام سلسله است؟",
+            o:["هخامنشیان","ساسانیان","اشکانیان","صفویان"],
+            a:0
+        },
+        {
+            q:"داریوش بزرگ چه سلسله‌ای را اداره می‌کرد؟",
+            o:["هخامنشی","ساسانی","قاجار","صفوی"],
+            a:0
+        },
+        {
+            q:"یکی از مراکز مهم اداری هخامنشیان کدام بود؟",
+            o:["شوش","رم","پاریس","کیوتو"],
+            a:0
+        },
+        {
+            q:"کدام پادشاه ساخت تخت جمشید را آغاز کرد؟",
+            o:["داریوش بزرگ","کوروش بزرگ","کمبوجیه","داریوش سوم"],
+            a:0
+        },
+        {
+            q:"کتیبه بیستون متعلق به کدام پادشاه است؟",
+            o:["داریوش بزرگ","کوروش بزرگ","خشایارشا","کمبوجیه"],
+            a:0
+        },
+        {
+            q:"آخرین شاه هخامنشی چه کسی بود؟",
+            o:["داریوش سوم","کوروش بزرگ","داریوش اول","خشایارشا"],
+            a:0
+        },
+        {
+            q:"هخامنشیان در کدام قاره ریشه داشتند؟",
+            o:["آسیا","آمریکا","استرالیا","آفریقا"],
+            a:0
+        },
+        {
+            q:"کدام پادشاه پس از داریوش اول به قدرت رسید؟",
+            o:["خشایارشا","کوروش","کمبوجیه","داریوش سوم"],
+            a:0
+        },
+        {
+            q:"پایتخت‌های مهم هخامنشیان شامل کدام شهر بود؟",
+            o:["شوش","لندن","پکن","برلین"],
+            a:0
+        }
+    ],
 
-const answers=document.getElementById("answers");
+    persepolis:[
+        {
+            q:"تخت جمشید در نزدیکی کدام شهر امروزی قرار دارد؟",
+            o:["شیراز","تهران","تبریز","مشهد"],
+            a:0
+        },
+        {
+            q:"نام باستانی تخت جمشید چه بود؟",
+            o:["پارسه","بابل","شوش","پاسارگاد"],
+            a:0
+        },
+        {
+            q:"ساخت تخت جمشید در زمان چه کسی آغاز شد؟",
+            o:["داریوش بزرگ","کوروش بزرگ","کمبوجیه","داریوش سوم"],
+            a:0
+        },
+        {
+            q:"تخت جمشید مربوط به کدام امپراتوری بود؟",
+            o:["هخامنشی","ساسانی","روم","عثمانی"],
+            a:0
+        },
+        {
+            q:"تخت جمشید امروزه در کدام کشور قرار دارد؟",
+            o:["ایران","عراق","ترکیه","یونان"],
+            a:0
+        },
+        {
+            q:"کدام شاه ساخت‌وساز تخت جمشید را ادامه داد؟",
+            o:["خشایارشا","کوروش","کمبوجیه","داریوش سوم"],
+            a:0
+        },
+        {
+            q:"تخت جمشید بیشتر چه نوع مجموعه‌ای بود؟",
+            o:["مجموعه تشریفاتی و سلطنتی","بازار","بندر","قلعه نظامی"],
+            a:0
+        },
+        {
+            q:"یکی از ویژگی‌های مشهور تخت جمشید چیست؟",
+            o:["نقش‌برجسته‌ها","آسمان‌خراش‌ها","پل معلق","برج ساعت"],
+            a:0
+        },
+        {
+            q:"تخت جمشید یکی از آثار مهم کدام دوره است؟",
+            o:["ایران باستان","دوره قاجار","دوره صفوی","دوره معاصر"],
+            a:0
+        },
+        {
+            q:"تخت جمشید در فهرست میراث جهانی قرار دارد؟",
+            o:["بله","خیر","فقط محلی است","هنوز بررسی نشده"],
+            a:0
+        }
+    ],
 
-answers.innerHTML="";
+    history:[
+        {
+            q:"کدام سلسله یکی از مشهورترین سلسله‌های ایران باستان بود؟",
+            o:["هخامنشیان","قاجاریان","صفویان","زندیه"],
+            a:0
+        },
+        {
+            q:"صفویان چه مذهبی را در ایران رسمی کردند؟",
+            o:["تشیع دوازده‌امامی","بودایی","مسیحیت","زرتشتی"],
+            a:0
+        },
+        {
+            q:"پایتخت صفویان در دوره شاه عباس اول کجا بود؟",
+            o:["اصفهان","تهران","شیراز","تبریز"],
+            a:0
+        },
+        {
+            q:"نادرشاه مربوط به کدام دوره تاریخی است؟",
+            o:["افشاریه","هخامنشی","ساسانی","قاجار"],
+            a:0
+        },
+        {
+            q:"ساسانیان پس از کدام سلسله به قدرت رسیدند؟",
+            o:["اشکانیان","صفویان","قاجاریان","هخامنشیان"],
+            a:0
+        },
+        {
+            q:"اشکانیان به نام دیگری نیز شناخته می‌شوند؟",
+            o:["پارتیان","هخامنشیان","مادها","ساسانیان"],
+            a:0
+        },
+        {
+            q:"پایتخت مشهور ساسانیان چه شهری بود؟",
+            o:["تیسفون","اصفهان","شیراز","تبریز"],
+            a:0
+        },
+        {
+            q:"کوروش بزرگ مربوط به کدام دوره است؟",
+            o:["هخامنشی","ساسانی","صفوی","قاجار"],
+            a:0
+        },
+        {
+            q:"داریوش بزرگ از شاهان کدام سلسله بود؟",
+            o:["هخامنشی","ساسانی","اشکانی","صفوی"],
+            a:0
+        },
+        {
+            q:"تخت جمشید در کدام استان امروزی ایران قرار دارد؟",
+            o:["فارس","تهران","خراسان رضوی","آذربایجان شرقی"],
+            a:0
+        }
+    ],
 
-q.a.forEach((answer,index)=>{
+    world_history:[
+        {
+            q:"اهرام مشهور جیزه در کدام کشور قرار دارند؟",
+            o:["مصر","یونان","ایتالیا","هند"],
+            a:0
+        },
+        {
+            q:"امپراتوری روم در کدام قاره شکل گرفت؟",
+            o:["اروپا","آمریکا","استرالیا","قطب جنوب"],
+            a:0
+        },
+        {
+            q:"تمدن مایا بیشتر در کدام منطقه شکوفا شد؟",
+            o:["آمریکای مرکزی","اروپای شمالی","شرق آسیا","خاورمیانه"],
+            a:0
+        },
+        {
+            q:"دیوار بزرگ در کدام کشور قرار دارد؟",
+            o:["چین","ژاپن","هند","مصر"],
+            a:0
+        },
+        {
+            q:"ژولیوس سزار مربوط به کدام تمدن بود؟",
+            o:["روم","مصر","چین","ایران"],
+            a:0
+        },
+        {
+            q:"اسکندر مقدونی اهل کدام منطقه بود؟",
+            o:["مقدونیه","مصر","ایران","چین"],
+            a:0
+        },
+        {
+            q:"تمدن مصر باستان در کنار کدام رود شکل گرفت؟",
+            o:["نیل","دجله","فرات","دانوب"],
+            a:0
+        },
+        {
+            q:"شهر آتن مربوط به کدام تمدن تاریخی است؟",
+            o:["یونان باستان","روم","مصر","چین"],
+            a:0
+        },
+        {
+            q:"کدام تمدن با شهر تروآ ارتباط دارد؟",
+            o:["یونان باستان","مایا","چین","مصر"],
+            a:0
+        },
+        {
+            q:"کدام شهر تاریخی مرکز مهم امپراتوری روم بود؟",
+            o:["رم","پکن","دهلی","قاهره"],
+            a:0
+        }
+    ],
 
-const button=document.createElement("button");
+    countries:[
+        {
+            q:"پایتخت ایران کدام است؟",
+            o:["تهران","شیراز","تبریز","اصفهان"],
+            a:0
+        },
+        {
+            q:"پایتخت فرانسه چیست؟",
+            o:["پاریس","رم","برلین","مادرید"],
+            a:0
+        },
+        {
+            q:"ژاپن در کدام قاره قرار دارد؟",
+            o:["آسیا","اروپا","آفریقا","آمریکا"],
+            a:0
+        },
+        {
+            q:"پایتخت ایتالیا کدام است؟",
+            o:["رم","میلان","ونیز","ناپل"],
+            a:0
+        },
+        {
+            q:"کدام کشور به سرزمین آفتاب تابان مشهور است؟",
+            o:["ژاپن","چین","هند","کره جنوبی"],
+            a:0
+        },
+        {
+            q:"پایتخت ترکیه چیست؟",
+            o:["آنکارا","استانبول","ازمیر","آنتالیا"],
+            a:0
+        },
+        {
+            q:"بزرگ‌ترین کشور جهان از نظر مساحت کدام است؟",
+            o:["روسیه","کانادا","چین","آمریکا"],
+            a:0
+        },
+        {
+            q:"پایتخت مصر چیست؟",
+            o:["قاهره","اسکندریه","جیزه","سوئز"],
+            a:0
+        },
+        {
+            q:"کدام کشور پرچم خورشید تابان دارد؟",
+            o:["ژاپن","فرانسه","آلمان","برزیل"],
+            a:0
+        },
+        {
+            q:"پایتخت بریتانیا چیست؟",
+            o:["لندن","منچستر","لیورپول","بیرمنگام"],
+            a:0
+        }
+    ],
 
-button.className="answer";
+    cities:[
+        {
+            q:"پایتخت ایران کدام شهر است؟",
+            o:["تهران","شیراز","اصفهان","مشهد"],
+            a:0
+        },
+        {
+            q:"تخت جمشید نزدیک کدام شهر امروزی است؟",
+            o:["شیراز","تبریز","تهران","رشت"],
+            a:0
+        },
+        {
+            q:"کولوسئوم در کدام شهر قرار دارد؟",
+            o:["رم","پاریس","لندن","آتن"],
+            a:0
+        },
+        {
+            q:"برج ایفل در کدام شهر است؟",
+            o:["پاریس","رم","مادرید","برلین"],
+            a:0
+        },
+        {
+            q:"استانبول در کدام کشور قرار دارد؟",
+            o:["ترکیه","ایران","یونان","مصر"],
+            a:0
+        },
+        {
+            q:"اصفهان به چه چیزی مشهور است؟",
+            o:["میدان نقش جهان","برج ایفل","کولوسئوم","دیوار چین"],
+            a:0
+        },
+        {
+            q:"مشهد در کدام کشور قرار دارد؟",
+            o:["ایران","عراق","ترکیه","افغانستان"],
+            a:0
+        },
+        {
+            q:"قاهره پایتخت کدام کشور است؟",
+            o:["مصر","مراکش","الجزایر","تونس"],
+            a:0
+        },
+        {
+            q:"پکن پایتخت کدام کشور است؟",
+            o:["چین","ژاپن","کره جنوبی","تایلند"],
+            a:0
+        },
+        {
+            q:"لندن پایتخت کدام کشور است؟",
+            o:["بریتانیا","فرانسه","آلمان","ایتالیا"],
+            a:0
+        }
+    ],
 
-button.textContent=answer;
+    football:[
+        {
+            q:"تعداد بازیکنان اصلی یک تیم فوتبال در زمین چند نفر است؟",
+            o:["11","9","10","12"],
+            a:0
+        },
+        {
+            q:"جام جهانی فوتبال توسط کدام سازمان برگزار می‌شود؟",
+            o:["FIFA","NBA","UEFA فقط","IOC"],
+            a:0
+        },
+        {
+            q:"کدام کشور قهرمان جام جهانی 2022 شد؟",
+            o:["آرژانتین","فرانسه","برزیل","آلمان"],
+            a:0
+        },
+        {
+            q:"کدام بازیکن با نام CR7 شناخته می‌شود؟",
+            o:["کریستیانو رونالدو","لیونل مسی","نیمار","امباپه"],
+            a:0
+        },
+        {
+            q:"کدام بازیکن با نام La Pulga مشهور است؟",
+            o:["لیونل مسی","رونالدو","مودریچ","رونالدینیو"],
+            a:0
+        },
+        {
+            q:"فوتبال با پا بیشتر بازی می‌شود یا دست؟",
+            o:["پا","دست","هر دو به یک اندازه","هیچ‌کدام"],
+            a:0
+        },
+        {
+            q:"دروازه‌بان معمولاً چه کاری انجام می‌دهد؟",
+            o:["محافظت از دروازه","داوری","پرتاب اوت","زدن کرنر"],
+            a:0
+        },
+        {
+            q:"کارت قرمز معمولاً چه معنایی دارد؟",
+            o:["اخراج بازیکن","گل","تعویض","پایان نیمه"],
+            a:0
+        },
+        {
+            q:"کدام کشور یکی از پرافتخارترین تیم‌های جام جهانی است؟",
+            o:["برزیل","کانادا","هند","مصر"],
+            a:0
+        },
+        {
+            q:"مدت استاندارد یک مسابقه فوتبال چند دقیقه است؟",
+            o:["90 دقیقه","60 دقیقه","100 دقیقه","120 دقیقه"],
+            a:0
+        }
+    ],
 
-button.onclick=()=>checkAnswer(button,index);
+    games:[
+        {
+            q:"کدام شرکت سازنده کنسول PlayStation است؟",
+            o:["Sony","Microsoft","Nintendo","Sega"],
+            a:0
+        },
+        {
+            q:"Minecraft بیشتر با چه چیزی شناخته می‌شود؟",
+            o:["ساخت‌وساز و جهان بلوکی","مسابقات فوتبال","شطرنج","موسیقی"],
+            a:0
+        },
+        {
+            q:"کدام شرکت Xbox را ساخته است؟",
+            o:["Microsoft","Sony","Nintendo","Valve"],
+            a:0
+        },
+        {
+            q:"Fortnite در چه سبکی بسیار مشهور است؟",
+            o:["Battle Royale","شطرنج","مسابقه‌ای","شبیه‌ساز پرواز"],
+            a:0
+        },
+        {
+            q:"Mario شخصیت معروف کدام شرکت است؟",
+            o:["Nintendo","Sony","Microsoft","EA"],
+            a:0
+        },
+        {
+            q:"GTA بیشتر در چه سبکی قرار می‌گیرد؟",
+            o:["جهان‌باز","پازل","ورزشی","آموزشی"],
+            a:0
+        },
+        {
+            q:"Minecraft توسط کدام شرکت توسعه داده شد؟",
+            o:["Mojang","Nintendo","Ubisoft","EA"],
+            a:0
+        },
+        {
+            q:"کدام مورد یک کنسول بازی است؟",
+            o:["PlayStation","Chrome","Windows","Android"],
+            a:0
+        },
+        {
+            q:"کدام بازی دارای شخصیت Link است؟",
+            o:["The Legend of Zelda","Minecraft","FIFA","GTA"],
+            a:0
+        },
+        {
+            q:"کدام مورد یک پلتفرم بازی رایانه‌ای است؟",
+            o:["Steam","Excel","Photoshop","Word"],
+            a:0
+        }
+    ],
 
-answers.appendChild(button);
+    science:[
+        {
+            q:"سیاره سرخ کدام است؟",
+            o:["مریخ","زهره","مشتری","عطارد"],
+            a:0
+        },
+        {
+            q:"آب از چند اتم هیدروژن و اکسیژن تشکیل شده است؟",
+            o:["2 هیدروژن و 1 اکسیژن","1 هیدروژن و 2 اکسیژن","3 هیدروژن","2 اکسیژن"],
+            a:0
+        },
+        {
+            q:"مرکز منظومه شمسی چیست؟",
+            o:["خورشید","زمین","ماه","مشتری"],
+            a:0
+        },
+        {
+            q:"کدام اندام خون را پمپاژ می‌کند؟",
+            o:["قلب","ریه","مغز","کبد"],
+            a:0
+        },
+        {
+            q:"نیرویی که اجسام را به سمت زمین می‌کشد چیست؟",
+            o:["گرانش","اصطکاک","نور","صدا"],
+            a:0
+        },
+        {
+            q:"بزرگ‌ترین سیاره منظومه شمسی کدام است؟",
+            o:["مشتری","زمین","زحل","نپتون"],
+            a:0
+        },
+        {
+            q:"گیاهان برای فتوسنتز به چه گازی نیاز دارند؟",
+            o:["کربن دی‌اکسید","هلیوم","نیتروژن خالص","هیدروژن"],
+            a:0
+        },
+        {
+            q:"ما در کدام سیاره زندگی می‌کنیم؟",
+            o:["زمین","مریخ","زهره","مشتری"],
+            a:0
+        },
+        {
+            q:"کدام مورد یک ستاره است؟",
+            o:["خورشید","ماه","زمین","مریخ"],
+            a:0
+        },
+        {
+            q:"واحد اندازه‌گیری دما در سیستم رایج علمی چیست؟",
+            o:["کلوین","متر","کیلوگرم","وات"],
+            a:0
+        }
+    ],
 
-});
+    technology:[
+        {
+            q:"HTML بیشتر برای چه چیزی استفاده می‌شود؟",
+            o:["ساختار صفحات وب","ویرایش عکس","ساخت موسیقی","محاسبات بانکی"],
+            a:0
+        },
+        {
+            q:"CSS برای چه کاری استفاده می‌شود؟",
+            o:["طراحی و ظاهر صفحات","ذخیره فایل","ساخت سخت‌افزار","ارسال پیام"],
+            a:0
+        },
+        {
+            q:"JavaScript بیشتر در چه حوزه‌ای استفاده می‌شود؟",
+            o:["برنامه‌نویسی وب","نقاشی دستی","چاپ سه‌بعدی","کشاورزی"],
+            a:0
+        },
+        {
+            q:"Android متعلق به کدام شرکت است؟",
+            o:["Google","Sony","Microsoft","Nintendo"],
+            a:0
+        },
+        {
+            q:"کدام مورد یک سیستم‌عامل است؟",
+            o:["Android","Chrome","YouTube","GitHub"],
+            a:0
+        },
+        {
+            q:"GitHub بیشتر برای چه چیزی استفاده می‌شود؟",
+            o:["میزبانی و مدیریت کد","تماشای فیلم","خرید لباس","ویرایش ویدیو"],
+            a:0
+        },
+        {
+            q:"CPU چه بخشی از رایانه است؟",
+            o:["پردازنده","نمایشگر","باتری","بلندگو"],
+            a:0
+        },
+        {
+            q:"RAM چه نوع حافظه‌ای است؟",
+            o:["حافظه موقت","حافظه کاغذی","حافظه نوری","حافظه صوتی"],
+            a:0
+        },
+        {
+            q:"کدام زبان برای شروع برنامه‌نویسی بسیار محبوب است؟",
+            o:["Python","HTML","CSS","SQL فقط"],
+            a:0
+        },
+        {
+            q:"URL معمولاً به چه چیزی اشاره دارد؟",
+            o:["آدرس یک منبع در وب","رمز عبور","پردازنده","باتری"],
+            a:0
+        }
+    ],
 
-document.getElementById("result").style.display="none";
-document.getElementById("nextBtn").style.display="none";
+    animals:[
+        {
+            q:"بزرگ‌ترین حیوان روی زمین کدام است؟",
+            o:["نهنگ آبی","فیل","زرافه","کوسه"],
+            a:0
+        },
+        {
+            q:"کدام حیوان به سلطان جنگل معروف است؟",
+            o:["شیر","ببر","گرگ","پلنگ"],
+            a:0
+        },
+        {
+            q:"کدام حیوان پستاندار است؟",
+            o:["دلفین","کوسه","مار","عقاب"],
+            a:0
+        },
+        {
+            q:"زرافه چه ویژگی مشهوری دارد؟",
+            o:["گردن بلند","بال‌های بزرگ","شاخ‌های متعدد","پوست آبی"],
+            a:0
+        },
+        {
+            q:"کدام حیوان معمولاً در قطب جنوب زندگی می‌کند؟",
+            o:["پنگوئن","شتر","شیر","فیل"],
+            a:0
+        },
+        {
+            q:"کدام حیوان سریع‌تر شناخته می‌شود؟",
+            o:["یوزپلنگ","لاک‌پشت","فیل","کرگدن"],
+            a:0
+        },
+        {
+            q:"کدام حیوان عموماً تخم می‌گذارد؟",
+            o:["مرغ","گربه","سگ","اسب"],
+            a:0
+        },
+        {
+            q:"کدام مورد یک خزنده است؟",
+            o:["مار","دلفین","گربه","گنجشک"],
+            a:0
+        },
+        {
+            q:"کدام حیوان به داشتن خرطوم مشهور است؟",
+            o:["فیل","اسب","ببر","خرس"],
+            a:0
+        },
+        {
+            q:"کدام حیوان پرنده است؟",
+            o:["عقاب","گرگ","روباه","گوزن"],
+            a:0
+        }
+    ],
+
+    logic:[
+        {
+            q:"اگر 2 + 3 = 5 باشد، 5 + 4 چند می‌شود؟",
+            o:["9","8","10","7"],
+            a:0
+        },
+        {
+            q:"عدد بعدی چیست؟ 2، 4، 6، 8، ؟",
+            o:["10","11","12","9"],
+            a:0
+        },
+        {
+            q:"اگر امروز دوشنبه باشد، سه روز بعد چه روزی است؟",
+            o:["پنجشنبه","جمعه","چهارشنبه","یکشنبه"],
+            a:0
+        },
+        {
+            q:"کدام عدد بزرگ‌تر است؟",
+            o:["100","99","90","89"],
+            a:0
+        },
+        {
+            q:"اگر 3 جعبه داشته باشیم و هرکدام 2 توپ داشته باشند، چند توپ داریم؟",
+            o:["6","5","4","8"],
+            a:0
+        },
+        {
+            q:"الگوی 1، 3، 5، 7، ؟",
+            o:["9","10","8","11"],
+            a:0
+        },
+        {
+            q:"نصف 20 چند است؟",
+            o:["10","5","15","12"],
+            a:0
+        },
+        {
+            q:"کدام شکل 3 ضلع دارد؟",
+            o:["مثلث","مربع","دایره","پنج‌ضلعی"],
+            a:0
+        },
+        {
+            q:"اگر 10 سکه داشته باشی و 3 سکه خرج کنی، چند سکه می‌ماند؟",
+            o:["7","6","8","5"],
+            a:0
+        },
+        {
+            q:"کدام عدد زوج است؟",
+            o:["8","7","5","9"],
+            a:0
+        }
+    ],
+
+    knowledge:[
+        {
+            q:"بزرگ‌ترین اقیانوس جهان کدام است؟",
+            o:["اقیانوس آرام","اقیانوس اطلس","اقیانوس هند","اقیانوس منجمد"],
+            a:0
+        },
+        {
+            q:"چند روز در یک هفته وجود دارد؟",
+            o:["7","5","6","8"],
+            a:0
+        },
+        {
+            q:"رنگ حاصل از ترکیب آبی و زرد چیست؟",
+            o:["سبز","بنفش","نارنجی","قرمز"],
+            a:0
+        },
+        {
+            q:"کدام ماهواره طبیعی زمین است؟",
+            o:["ماه","مریخ","خورشید","زهره"],
+            a:0
+        },
+        {
+            q:"چند قاره اصلی در جهان وجود دارد؟",
+            o:["7","5","6","8"],
+            a:0
+        },
+        {
+            q:"کدام وسیله برای اندازه‌گیری زمان استفاده می‌شود؟",
+            o:["ساعت","ترازو","خط‌کش","دماسنج"],
+            a:0
+        },
+        {
+            q:"کدام مورد یک فلز است؟",
+            o:["آهن","چوب","شیشه","کاغذ"],
+            a:0
+        },
+        {
+            q:"کدام پرنده نمی‌تواند پرواز کند؟",
+            o:["شترمرغ","عقاب","کبوتر","شاهین"],
+            a:0
+        },
+        {
+            q:"آب در شرایط معمول در چند درجه سانتی‌گراد یخ می‌زند؟",
+            o:["0","10","50","100"],
+            a:0
+        },
+        {
+            q:"کدام مورد برای مشاهده ستاره‌ها استفاده می‌شود؟",
+            o:["تلسکوپ","میکروسکوپ","دماسنج","ترازو"],
+            a:0
+        }
+    ]
+
+};
+
+
+/* =========================
+   دسته‌های مشابه
+========================= */
+
+questionBank.leaders =
+    questionBank.history;
+
+questionBank.civilizations =
+    questionBank.ancient_iran;
+
+questionBank.countries =
+    questionBank.countries;
+
+questionBank.cities =
+    questionBank.cities;
+
+
+/* =========================
+   انتخاب سؤال‌ها
+========================= */
+
+let questions =
+    questionBank[selectedCategory] ||
+    questionBank.knowledge;
+
+
+/* فقط 10 سؤال */
+
+questions =
+    [...questions]
+    .sort(()=>Math.random()-0.5)
+    .slice(0,10);
+
+
+/* =========================
+   متغیرهای بازی
+========================= */
+
+let currentQuestion = 0;
+let score = 0;
+let correctAnswers = 0;
+let answered = false;
+
+
+/* =========================
+   نمایش آزمون
+========================= */
+
+document.getElementById("loading").style.display = "none";
+document.getElementById("quizContent").style.display = "block";
+
+document.getElementById("totalNumber").textContent =
+    questions.length;
+
+showQuestion();
+
+
+/* =========================
+   نمایش سؤال
+========================= */
+
+function showQuestion(){
+
+    answered = false;
+
+    const data =
+        questions[currentQuestion];
+
+    document.getElementById("currentNumber").textContent =
+        currentQuestion + 1;
+
+    document.getElementById("question").textContent =
+        data.q;
+
+    const options =
+        document.getElementById("options");
+
+    options.innerHTML = "";
+
+    document.getElementById("feedback").textContent = "";
+
+    document.getElementById("nextBtn").classList.remove("show");
+
+    const progress =
+        ((currentQuestion) / questions.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+
+    data.o.forEach((text,index)=>{
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            String.fromCharCode(1575 + index) +
+            " ـ " +
+            text;
+
+        button.onclick = () =>
+            answerQuestion(button,index);
+
+        options.appendChild(button);
+
+    });
 
 }
 
 
-function checkAnswer(button,index){
+/* =========================
+   پاسخ
+========================= */
 
-const q=questions[current];
+function answerQuestion(button,index){
 
-const buttons=document.querySelectorAll(".answer");
+    if(answered) return;
 
-buttons.forEach(b=>{
-b.classList.add("disabled");
-});
+    answered = true;
 
-if(index===q.correct){
+    const data =
+        questions[currentQuestion];
 
-button.classList.add("correct");
+    const buttons =
+        document.querySelectorAll(".option");
 
-score++;
+    buttons.forEach(btn=>{
+        btn.disabled = true;
+    });
 
-coins+=20;
-xp+=10;
 
-document.getElementById("resultTitle")
-.textContent="درست است! 👑";
+    if(index === data.a){
 
-document.getElementById("resultText")
-.textContent="+۲۰ سکه و +۱۰ XP";
+        button.classList.add("correct");
 
-}else{
+        score++;
 
-button.classList.add("wrong");
+        correctAnswers++;
 
-buttons[q.correct].classList.add("correct");
+        coins += 20;
 
-document.getElementById("resultTitle")
-.textContent="پاسخ نادرست";
+        xp += 10;
 
-document.getElementById("resultText")
-.textContent=
-"پاسخ درست: "+q.a[q.correct];
+        document.getElementById("feedback").innerHTML =
+            "🎉 آفرین! پاسخ درست بود.<br>🪙 +20 سکه &nbsp; ⭐ +10 XP";
+
+    }else{
+
+        button.classList.add("wrong");
+
+        buttons[data.a].classList.add("correct");
+
+        document.getElementById("feedback").innerHTML =
+            "❌ پاسخ اشتباه بود.<br>پاسخ درست مشخص شد.";
+
+    }
+
+
+    localStorage.setItem(
+        "ghostCoins",
+        coins
+    );
+
+    localStorage.setItem(
+        "ghostXP",
+        xp
+    );
+
+    document.getElementById("coins").textContent =
+        coins;
+
+    document.getElementById("xp").textContent =
+        xp;
+
+    document.getElementById("nextBtn").classList.add("show");
 
 }
 
-localStorage.setItem("ghostCoins",coins);
-localStorage.setItem("ghostXP",xp);
 
-document.getElementById("coins").textContent=coins;
-document.getElementById("xp").textContent=xp;
-
-document.getElementById("result").style.display="block";
-
-document.getElementById("nextBtn").style.display="block";
-
-}
-
+/* =========================
+   سؤال بعدی
+========================= */
 
 function nextQuestion(){
 
-current++;
+    currentQuestion++;
 
-if(current>=questions.length){
+    if(currentQuestion >= questions.length){
 
-finishQuiz();
+        finishQuiz();
 
-return;
+        return;
+    }
+
+    showQuestion();
+
 }
 
-loadQuestion();
 
-}
-
+/* =========================
+   پایان آزمون
+========================= */
 
 function finishQuiz(){
 
-document.getElementById("quizArea").style.display="none";
+    const total =
+        questions.length;
 
-document.getElementById("final").style.display="block";
+    const oldRecord =
+        Number(localStorage.getItem("quizRecord")) || 0;
 
-document.getElementById("progress").style.width="100%";
+    const oldGames =
+        Number(localStorage.getItem("quizGames")) || 0;
 
-document.getElementById("finalText").innerHTML=
-"امتیاز شما: <strong>"+score+
-" از "+questions.length+
-"</strong><br><br>"+
-"🪙 سکه‌های شما: "+coins+
-"<br>"+
-"⭐ XP شما: "+xp;
+    const oldCorrect =
+        Number(localStorage.getItem("correctTotal")) || 0;
+
+
+    localStorage.setItem(
+        "quizScore",
+        score
+    );
+
+    localStorage.setItem(
+        "quizTotal",
+        total
+    );
+
+    localStorage.setItem(
+        "quizRecord",
+        Math.max(oldRecord,score)
+    );
+
+    localStorage.setItem(
+        "quizGames",
+        oldGames + 1
+    );
+
+    localStorage.setItem(
+        "correctTotal",
+        oldCorrect + correctAnswers
+    );
+
+    localStorage.setItem(
+        "lastCategory",
+        selectedCategory
+    );
+
+
+    document.getElementById("quizCard").innerHTML = `
+
+        <div class="result">
+
+            <div class="result-icon">
+                ${score >= 8 ? "🏆" : score >= 5 ? "📜" : "🛡️"}
+            </div>
+
+            <h2>
+                آزمون تمام شد!
+            </h2>
+
+            <p>
+                امتیاز شما:
+                <b>${score} / ${total}</b>
+            </p>
+
+            <p>
+                پاسخ‌های صحیح:
+                <b>${correctAnswers}</b>
+            </p>
+
+            <p>
+                ⭐ XP فعلی:
+                <b>${xp}</b>
+            </p>
+
+            <button
+                class="next-btn show"
+                onclick="location.href='result.html'">
+
+                🏆 مشاهده نتیجه کامل
+
+            </button>
+
+        </div>
+
+    `;
+
+    document.getElementById("progressBar").style.width =
+        "100%";
 
 }
-
-
-function restartQuiz(){
-
-current=0;
-score=0;
-
-document.getElementById("quizArea").style.display="block";
-
-document.getElementById("final").style.display="none";
-
-loadQuestion();
-
-}
-
-
-loadQuestion();
 
 </script></body>
 </html>
