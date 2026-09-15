@@ -1,0 +1,347 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سؤال روزانه | Ghost Quiz</title><style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:
+        radial-gradient(circle at top,#3a2a0b 0%,#15110a 35%,#050505 75%);
+    color:#f5d77a;
+    min-height:100vh;
+}
+
+.container{
+    width:min(92%,700px);
+    margin:auto;
+    padding:20px 0 40px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(20,15,7,.9);
+    border:1px solid #9b7625;
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:20px;
+    box-shadow:0 0 25px rgba(212,167,62,.12);
+}
+
+.logo{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.coins{
+    background:#241b0b;
+    border:1px solid #a57b22;
+    padding:8px 13px;
+    border-radius:12px;
+}
+
+.hero{
+    text-align:center;
+    padding:25px 10px;
+}
+
+.crown{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+h1{
+    font-size:29px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#c9b77d;
+    font-size:14px;
+}
+
+.card{
+    background:linear-gradient(145deg,#1b160d,#0c0c0c);
+    border:1px solid #9b7625;
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 0 30px rgba(212,167,62,.12);
+}
+
+.question{
+    color:#fff4c7;
+    font-size:19px;
+    line-height:1.9;
+    text-align:center;
+    margin-bottom:22px;
+}
+
+.options{
+    display:grid;
+    gap:12px;
+}
+
+.option{
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    border:1px solid #73581f;
+    background:#17130c;
+    color:#f5d77a;
+    font-size:15px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#2a210f;
+    transform:translateY(-2px);
+}
+
+.option.correct{
+    border-color:#4caf50;
+    background:#17301b;
+}
+
+.option.wrong{
+    border-color:#c0392b;
+    background:#35130f;
+}
+
+.option:disabled{
+    cursor:default;
+}
+
+.reward{
+    text-align:center;
+    margin-top:20px;
+    padding:15px;
+    border-radius:15px;
+    background:#241b0b;
+    border:1px solid #80631f;
+    color:#e8cf7b;
+}
+
+.hidden{
+    display:none;
+}
+
+.done{
+    text-align:center;
+    padding:25px 10px;
+}
+
+.done .icon{
+    font-size:65px;
+    margin-bottom:10px;
+}
+
+.done h2{
+    color:#f5d77a;
+    margin-bottom:10px;
+}
+
+.done p{
+    color:#c9b77d;
+    line-height:2;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:13px 25px;
+    border:none;
+    border-radius:13px;
+    background:linear-gradient(135deg,#d4af37,#8f6818);
+    color:#160f04;
+    font-weight:bold;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.message{
+    text-align:center;
+    margin-top:15px;
+    min-height:25px;
+    color:#e8cf7b;
+    font-size:14px;
+}
+</style></head><body><div class="container"><div class="header">
+    <div class="logo">👻 Ghost Quiz</div>
+    <div class="coins">🪙 <span id="coins">0</span></div>
+</div>
+
+<div class="hero">
+    <div class="crown">👑</div>
+    <h1>سؤال روزانه</h1>
+    <div class="subtitle">هر روز یک پرسش، یک پاداش، یک قدم به سوی دانایی</div>
+</div>
+
+<div class="card">
+
+    <div id="quizBox">
+
+        <div class="question" id="question">
+            در حال آماده‌سازی سؤال...
+        </div>
+
+        <div class="options" id="options"></div>
+
+        <div class="reward">
+            🎁 پاسخ صحیح = <b>50 سکه</b> + <b>25 XP</b>
+        </div>
+
+        <div class="message" id="message"></div>
+
+    </div>
+
+    <div id="doneBox" class="done hidden">
+        <div class="icon">🏆</div>
+        <h2>سؤال امروز انجام شد!</h2>
+        <p id="doneText"></p>
+
+        <a href="index.html" class="btn">🏛️ بازگشت به خانه</a>
+    </div>
+
+</div>
+
+</div><script>
+
+const dailyQuestions = [
+    {
+        question:"پایتخت امپراتوری هخامنشیان که یکی از مهم‌ترین مراکز آن بود کدام بود؟",
+        options:["تخت جمشید","رم","آتن","اسکندریه"],
+        answer:0
+    },
+    {
+        question:"آرامگاه کوروش بزرگ در کدام مکان قرار دارد؟",
+        options:["پاسارگاد","شوش","بابل","همدان"],
+        answer:0
+    },
+    {
+        question:"کدام پادشاه هخامنشی ساخت تخت جمشید را آغاز کرد؟",
+        options:["داریوش بزرگ","کوروش بزرگ","کمبوجیه","خشایارشا"],
+        answer:0
+    },
+    {
+        question:"کدام مورد یک سیاره منظومه شمسی است؟",
+        options:["مریخ","ماه","خورشید","ستاره قطبی"],
+        answer:0
+    },
+    {
+        question:"بزرگ‌ترین قاره جهان کدام است؟",
+        options:["آسیا","اروپا","آفریقا","استرالیا"],
+        answer:0
+    }
+];
+
+const today = new Date().toISOString().slice(0,10);
+
+let coins = Number(localStorage.getItem("ghostCoins")) || 500;
+let xp = Number(localStorage.getItem("ghostXP")) || 0;
+
+document.getElementById("coins").textContent = coins;
+
+const lastDaily = localStorage.getItem("dailyQuestionDate");
+
+if(lastDaily === today){
+
+    document.getElementById("quizBox").classList.add("hidden");
+    document.getElementById("doneBox").classList.remove("hidden");
+
+    document.getElementById("doneText").textContent =
+        "سؤال روزانه امروز را قبلاً پاسخ داده‌ای. فردا دوباره برگرد تا جایزه جدید بگیری! 👑";
+
+}else{
+
+    const questionData =
+        dailyQuestions[new Date().getDate() % dailyQuestions.length];
+
+    document.getElementById("question").textContent =
+        questionData.question;
+
+    const optionsBox = document.getElementById("options");
+
+    questionData.options.forEach((option,index)=>{
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+        button.textContent = option;
+
+        button.onclick = ()=>checkAnswer(
+            button,
+            index,
+            questionData.answer
+        );
+
+        optionsBox.appendChild(button);
+    });
+
+}
+
+function checkAnswer(button,index,answer){
+
+    const buttons = document.querySelectorAll(".option");
+
+    buttons.forEach(btn=>btn.disabled=true);
+
+    if(index === answer){
+
+        button.classList.add("correct");
+
+        coins += 50;
+        xp += 25;
+
+        localStorage.setItem("ghostCoins",coins);
+        localStorage.setItem("ghostXP",xp);
+
+        localStorage.setItem("dailyQuestionDate",today);
+
+        document.getElementById("coins").textContent = coins;
+
+        document.getElementById("message").innerHTML =
+            "🎉 پاسخ درست بود! <br>🪙 +50 سکه &nbsp;&nbsp; ⭐ +25 XP";
+
+        setTimeout(()=>{
+
+            document.getElementById("quizBox").classList.add("hidden");
+            document.getElementById("doneBox").classList.remove("hidden");
+
+            document.getElementById("doneText").textContent =
+                "آفرین! جایزه امروزت دریافت شد. فردا دوباره به Ghost Quiz سر بزن. 👑";
+
+        },1200);
+
+    }else{
+
+        button.classList.add("wrong");
+
+        buttons[answer].classList.add("correct");
+
+        localStorage.setItem("dailyQuestionDate",today);
+
+        document.getElementById("message").innerHTML =
+            "❌ پاسخ اشتباه بود؛ جواب درست مشخص شد. فردا دوباره شانس داری!";
+
+        setTimeout(()=>{
+
+            document.getElementById("quizBox").classList.add("hidden");
+            document.getElementById("doneBox").classList.remove("hidden");
+
+            document.getElementById("doneText").textContent =
+                "امروز سؤال را انجام دادی. فردا یک سؤال جدید منتظرت است! 📜";
+
+        },1500);
+    }
+}
+
+</script></body>
+</html>
