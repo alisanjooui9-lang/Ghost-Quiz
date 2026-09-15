@@ -1,0 +1,406 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Ghost Quiz | دستاوردها</title><style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Tahoma,Arial,sans-serif;
+min-height:100vh;
+background:
+radial-gradient(circle at top,#332918 0,#120f0a 45%,#050504 100%);
+color:#f3e6c1;
+}
+
+header{
+background:rgba(7,6,4,.97);
+border-bottom:1px solid #80612b;
+padding:14px;
+}
+
+.top{
+max-width:900px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+font-family:Georgia,serif;
+font-size:20px;
+font-weight:bold;
+color:#e3bd65;
+}
+
+.back{
+text-decoration:none;
+color:#c8aa65;
+border:1px solid #594621;
+padding:8px 13px;
+border-radius:6px;
+font-size:12px;
+}
+
+.container{
+max-width:850px;
+margin:auto;
+padding:35px 15px 60px;
+}
+
+.hero{
+text-align:center;
+margin-bottom:25px;
+}
+
+.heroIcon{
+font-size:55px;
+margin-bottom:10px;
+}
+
+.hero h1{
+font-family:Georgia,serif;
+font-size:32px;
+color:#e4c170;
+margin-bottom:8px;
+}
+
+.hero p{
+font-size:12px;
+color:#a4987b;
+line-height:1.8;
+}
+
+.progressCard{
+background:#110f0a;
+border:1px solid #594620;
+border-radius:8px;
+padding:18px;
+margin-bottom:18px;
+}
+
+.progressTop{
+display:flex;
+justify-content:space-between;
+font-size:12px;
+color:#9c8f72;
+margin-bottom:9px;
+}
+
+.progressTop strong{
+color:#dfbd69;
+}
+
+.progress{
+height:9px;
+background:#241d11;
+border-radius:20px;
+overflow:hidden;
+}
+
+.fill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#806021,#e0bc65);
+transition:.5s;
+}
+
+.list{
+display:grid;
+gap:12px;
+}
+
+.achievement{
+display:flex;
+align-items:center;
+gap:15px;
+background:
+linear-gradient(145deg,#1b160d,#0c0b08);
+border:1px solid #55431f;
+border-radius:8px;
+padding:17px;
+transition:.2s;
+}
+
+.achievement.unlocked{
+border-color:#967334;
+}
+
+.achievement.locked{
+opacity:.55;
+}
+
+.icon{
+width:55px;
+height:55px;
+flex-shrink:0;
+border-radius:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:29px;
+background:#12100b;
+border:1px solid #4e3c20;
+}
+
+.unlocked .icon{
+background:#21190b;
+border-color:#a17c36;
+}
+
+.info{
+flex:1;
+}
+
+.info h2{
+font-family:Georgia,serif;
+font-size:17px;
+color:#dcb967;
+margin-bottom:6px;
+}
+
+.info p{
+font-size:11px;
+color:#958a70;
+line-height:1.7;
+}
+
+.status{
+font-size:10px;
+white-space:nowrap;
+color:#776d59;
+}
+
+.unlocked .status{
+color:#d2ad59;
+}
+
+footer{
+text-align:center;
+padding:25px;
+font-size:11px;
+color:#665e4c;
+}
+
+footer strong{
+color:#9c8044;
+}
+
+@media(max-width:500px){
+
+.hero h1{
+font-size:27px;
+}
+
+.achievement{
+padding:14px 11px;
+gap:10px;
+}
+
+.icon{
+width:48px;
+height:48px;
+font-size:25px;
+}
+
+.info h2{
+font-size:15px;
+}
+
+.status{
+font-size:9px;
+}
+
+}
+</style></head><body><header>
+<div class="top"><div class="logo">
+👑 Ghost Quiz
+</div><a href="index.html" class="back">
+بازگشت
+</a></div>
+</header><main class="container"><section class="hero"><div class="heroIcon">🏆</div><h1>
+دستاوردهای تاریخی
+</h1><p>
+افتخارات خود را جمع کن و به یک تاریخ‌دان واقعی تبدیل شو.
+</p></section><div class="progressCard"><div class="progressTop"><span>
+پیشرفت دستاوردها
+</span><strong>
+<span id="unlocked">0</span> / 8
+</strong></div><div class="progress">
+<div class="fill" id="progress"></div>
+</div></div><section class="list" id="list"></section></main><footer><strong>Ghost Quiz</strong>
+
+<br><br>
+
+میراث پارس • دانش • تاریخ
+
+</footer><script>
+
+const achievements=[
+
+{
+id:"first",
+icon:"👑",
+title:"میراث‌دار پارس",
+description:"اولین آزمون خود را کامل کن.",
+check:()=>{
+return games>=1;
+}
+},
+
+{
+id:"five",
+icon:"📜",
+title:"دانش‌آموز تاریخ",
+description:"حداقل ۵ پاسخ صحیح داشته باش.",
+check:()=>{
+return correctTotal>=5;
+}
+},
+
+{
+id:"ten",
+icon:"🏛️",
+title:"پژوهشگر تاریخ",
+description:"حداقل ۱۰ پاسخ صحیح داشته باش.",
+check:()=>{
+return correctTotal>=10;
+}
+},
+
+{
+id:"twenty",
+icon:"🦁",
+title:"شیر پارس",
+description:"حداقل ۲۰ پاسخ صحیح داشته باش.",
+check:()=>{
+return correctTotal>=20;
+}
+},
+
+{
+id:"record",
+icon:"🏆",
+title:"تاریخ‌دان بزرگ",
+description:"در یک آزمون حداقل ۸ پاسخ صحیح بده.",
+check:()=>{
+return record>=8;
+}
+},
+
+{
+id:"perfect",
+icon:"👑",
+title:"فرمانروای دانش",
+description:"یک آزمون را با امتیاز کامل تمام کن.",
+check:()=>{
+return record>=10;
+}
+},
+
+{
+id:"xp",
+icon:"⭐",
+title:"جوینده دانش",
+description:"حداقل ۱۰۰ XP کسب کن.",
+check:()=>{
+return xp>=100;
+}
+},
+
+{
+id:"rich",
+icon:"🪙",
+title:"خزانه‌دار پارس",
+description:"حداقل ۱۰۰۰ سکه جمع کن.",
+check:()=>{
+return coins>=1000;
+}
+}
+
+];
+
+
+let xp=
+Number(localStorage.getItem("ghostXP"))||0;
+
+let coins=
+Number(localStorage.getItem("ghostCoins"))||500;
+
+let record=
+Number(localStorage.getItem("quizRecord"))||0;
+
+let games=
+Number(localStorage.getItem("quizGames"))||0;
+
+
+/*
+تعداد پاسخ‌های درست ذخیره‌شده
+*/
+
+let correctTotal=
+Number(localStorage.getItem("correctTotal"))||0;
+
+
+const list=
+document.getElementById("list");
+
+let count=0;
+
+
+achievements.forEach(item=>{
+
+const unlocked=item.check();
+
+if(unlocked){
+count++;
+}
+
+const box=document.createElement("div");
+
+box.className=
+"achievement "+
+(unlocked?"unlocked":"locked");
+
+box.innerHTML=`
+
+<div class="icon">
+${unlocked?item.icon:"🔒"}
+</div>
+
+<div class="info">
+
+<h2>
+${item.title}
+</h2>
+
+<p>
+${item.description}
+</p>
+
+</div>
+
+<div class="status">
+${unlocked?"✓ باز شده":"قفل"}
+</div>
+
+`;
+
+list.appendChild(box);
+
+});
+
+
+document.getElementById("unlocked")
+.textContent=count;
+
+document.getElementById("progress")
+.style.width=
+(count/achievements.length*100)+"%";
+
+</script></body>
+</html>
