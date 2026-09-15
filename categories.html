@@ -1,0 +1,439 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>دسته‌بندی‌ها | Ghost Quiz</title><style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    min-height:100vh;
+    color:#f5d77a;
+    background:
+        radial-gradient(circle at top,#3a2a0b 0%,#15110a 35%,#050505 80%);
+}
+
+.container{
+    width:min(94%,720px);
+    margin:auto;
+    padding:20px 0 40px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    border:1px solid #9b7625;
+    border-radius:18px;
+    background:#120f09;
+    box-shadow:0 0 25px rgba(212,167,62,.1);
+}
+
+.logo{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.coins{
+    background:#241b0b;
+    border:1px solid #80631f;
+    padding:8px 12px;
+    border-radius:12px;
+}
+
+.hero{
+    text-align:center;
+    padding:28px 10px 20px;
+}
+
+.hero-icon{
+    font-size:55px;
+}
+
+h1{
+    font-size:28px;
+    margin:8px 0;
+}
+
+.subtitle{
+    color:#c9b77d;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:13px;
+    margin-top:15px;
+}
+
+.category{
+    text-decoration:none;
+    color:#f5d77a;
+    background:linear-gradient(145deg,#1b160d,#090909);
+    border:1px solid #72571d;
+    border-radius:19px;
+    padding:19px 12px;
+    text-align:center;
+    transition:.2s;
+}
+
+.category:hover{
+    transform:translateY(-3px);
+    border-color:#c49a35;
+    box-shadow:0 5px 20px rgba(212,167,62,.1);
+}
+
+.category-icon{
+    font-size:37px;
+    margin-bottom:9px;
+}
+
+.category-name{
+    color:#fff0bd;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.category-desc{
+    color:#95835a;
+    font-size:10px;
+    margin-top:7px;
+    line-height:1.6;
+}
+
+.category.ancient{
+    border-color:#a17b28;
+    background:linear-gradient(145deg,#30220c,#100d08);
+}
+
+.badge{
+    display:inline-block;
+    margin-top:9px;
+    padding:4px 8px;
+    border-radius:8px;
+    background:#2c210d;
+    color:#d4af37;
+    font-size:9px;
+}
+
+.home{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    margin-top:22px;
+    padding:14px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#d4af37,#8f6818);
+    color:#160f04;
+    font-weight:bold;
+}
+
+@media(max-width:430px){
+    .categories{
+        gap:10px;
+    }
+
+    .category{
+        padding:16px 8px;
+    }
+
+    .category-icon{
+        font-size:32px;
+    }
+}
+</style></head><body><div class="container"><div class="header">
+
+    <div class="logo">
+        👻 Ghost Quiz
+    </div>
+
+    <div class="coins">
+        🪙 <span id="coins">0</span>
+    </div>
+
+</div>
+
+<div class="hero">
+
+    <div class="hero-icon">🏛️</div>
+
+    <h1>دسته‌بندی‌ها</h1>
+
+    <div class="subtitle">
+        موضوع مورد علاقه‌ات را انتخاب کن و وارد آزمون شو
+        <br>
+        میراث پارس در کنار دنیای دانش 👑
+    </div>
+
+</div>
+
+<div class="categories">
+
+    <a class="category ancient" href="quiz.html?category=ancient_iran">
+
+        <div class="category-icon">👑</div>
+
+        <div class="category-name">
+            ایران باستان
+        </div>
+
+        <div class="category-desc">
+            هخامنشیان، مادها و تاریخ ایران
+        </div>
+
+        <span class="badge">
+            ویژه
+        </span>
+
+    </a>
+
+    <a class="category ancient" href="quiz.html?category=cyrus">
+
+        <div class="category-icon">🦁</div>
+
+        <div class="category-name">
+            کوروش بزرگ
+        </div>
+
+        <div class="category-desc">
+            زندگی و فتوحات کوروش
+        </div>
+
+        <span class="badge">
+            ویژه
+        </span>
+
+    </a>
+
+    <a class="category ancient" href="quiz.html?category=achaemenid">
+
+        <div class="category-icon">🏛️</div>
+
+        <div class="category-name">
+            هخامنشیان
+        </div>
+
+        <div class="category-desc">
+            شاهان و تمدن هخامنشی
+        </div>
+
+    </a>
+
+    <a class="category ancient" href="quiz.html?category=persepolis">
+
+        <div class="category-icon">🏺</div>
+
+        <div class="category-name">
+            تخت جمشید
+        </div>
+
+        <div class="category-desc">
+            بناها، کتیبه‌ها و تاریخ پارسه
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=history">
+
+        <div class="category-icon">📜</div>
+
+        <div class="category-name">
+            تاریخ ایران
+        </div>
+
+        <div class="category-desc">
+            از ایران باستان تا دوران معاصر
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=world_history">
+
+        <div class="category-icon">🌍</div>
+
+        <div class="category-name">
+            تاریخ جهان
+        </div>
+
+        <div class="category-desc">
+            تمدن‌ها و رویدادهای تاریخی
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=leaders">
+
+        <div class="category-icon">👑</div>
+
+        <div class="category-name">
+            شاهان و فرمانروایان
+        </div>
+
+        <div class="category-desc">
+            فرمانروایان مشهور جهان
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=civilizations">
+
+        <div class="category-icon">🏺</div>
+
+        <div class="category-name">
+            تمدن‌ها
+        </div>
+
+        <div class="category-desc">
+            تمدن‌های بزرگ تاریخ
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=countries">
+
+        <div class="category-icon">🌎</div>
+
+        <div class="category-name">
+            کشورها
+        </div>
+
+        <div class="category-desc">
+            پرچم، پایتخت و جغرافیا
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=cities">
+
+        <div class="category-icon">🏙️</div>
+
+        <div class="category-name">
+            شهرها
+        </div>
+
+        <div class="category-desc">
+            شهرهای مشهور ایران و جهان
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=football">
+
+        <div class="category-icon">⚽</div>
+
+        <div class="category-name">
+            فوتبال
+        </div>
+
+        <div class="category-desc">
+            بازیکنان، تیم‌ها و مسابقات
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=games">
+
+        <div class="category-icon">🎮</div>
+
+        <div class="category-name">
+            بازی‌ها
+        </div>
+
+        <div class="category-desc">
+            بازی‌های معروف و دنیای گیم
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=science">
+
+        <div class="category-icon">🧪</div>
+
+        <div class="category-name">
+            علم
+        </div>
+
+        <div class="category-desc">
+            فیزیک، شیمی، زیست و فضا
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=technology">
+
+        <div class="category-icon">💻</div>
+
+        <div class="category-name">
+            تکنولوژی
+        </div>
+
+        <div class="category-desc">
+            کامپیوتر، موبایل و فناوری
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=animals">
+
+        <div class="category-icon">🐾</div>
+
+        <div class="category-name">
+            حیوانات
+        </div>
+
+        <div class="category-desc">
+            دنیای شگفت‌انگیز حیوانات
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=logic">
+
+        <div class="category-icon">🧠</div>
+
+        <div class="category-name">
+            هوش و منطق
+        </div>
+
+        <div class="category-desc">
+            معما و سؤال‌های فکری
+        </div>
+
+    </a>
+
+    <a class="category" href="quiz.html?category=knowledge">
+
+        <div class="category-icon">📚</div>
+
+        <div class="category-name">
+            دانستنی‌ها
+        </div>
+
+        <div class="category-desc">
+            اطلاعات عمومی و جذاب
+        </div>
+
+    </a>
+
+</div>
+
+<a href="index.html" class="home">
+    🏛️ بازگشت به خانه
+</a>
+
+</div><script>
+
+const coins =
+    Number(localStorage.getItem("ghostCoins")) || 500;
+
+document.getElementById("coins").textContent = coins;
+
+</script></body>
+</html>
