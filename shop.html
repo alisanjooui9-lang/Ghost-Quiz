@@ -1,0 +1,460 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Ghost Quiz | فروشگاه</title><style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Tahoma,Arial,sans-serif;
+min-height:100vh;
+color:#f3e6c1;
+background:
+radial-gradient(circle at top,#332918 0,#120f0a 45%,#050504 100%);
+}
+
+header{
+background:rgba(7,6,4,.97);
+border-bottom:1px solid #80612b;
+padding:14px;
+}
+
+.top{
+max-width:900px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+}
+
+.logo{
+font-family:Georgia,serif;
+font-size:20px;
+font-weight:bold;
+color:#e3bd65;
+}
+
+.coins{
+background:#17130b;
+border:1px solid #594620;
+border-radius:7px;
+padding:8px 12px;
+font-size:13px;
+color:#e0bd67;
+}
+
+.back{
+text-decoration:none;
+color:#c8aa65;
+border:1px solid #594621;
+padding:8px 12px;
+border-radius:6px;
+font-size:12px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:35px 15px 60px;
+}
+
+.hero{
+text-align:center;
+margin-bottom:28px;
+}
+
+.heroIcon{
+font-size:55px;
+margin-bottom:10px;
+}
+
+.hero h1{
+font-family:Georgia,serif;
+font-size:32px;
+color:#e4c170;
+margin-bottom:8px;
+}
+
+.hero p{
+font-size:12px;
+color:#a4987b;
+line-height:1.8;
+}
+
+.shop{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+}
+
+.item{
+background:
+linear-gradient(145deg,#1b160d,#0c0b08);
+border:1px solid #55431f;
+border-radius:9px;
+padding:22px 16px;
+text-align:center;
+transition:.2s;
+}
+
+.item:hover{
+transform:translateY(-4px);
+border-color:#a27e39;
+}
+
+.itemIcon{
+font-size:42px;
+margin-bottom:12px;
+}
+
+.item h2{
+font-family:Georgia,serif;
+font-size:18px;
+color:#ddbb69;
+margin-bottom:8px;
+}
+
+.item p{
+font-size:11px;
+line-height:1.8;
+color:#958a70;
+min-height:42px;
+}
+
+.price{
+margin:17px 0 12px;
+color:#dfbc65;
+font-weight:bold;
+font-size:14px;
+}
+
+.buy{
+width:100%;
+padding:12px;
+border:1px solid #c9a34e;
+border-radius:6px;
+background:linear-gradient(135deg,#d2a84e,#876325);
+color:#080704;
+font-weight:bold;
+cursor:pointer;
+font-family:Tahoma,Arial,sans-serif;
+}
+
+.buy:hover{
+filter:brightness(1.1);
+}
+
+.buy:disabled{
+opacity:.45;
+cursor:not-allowed;
+}
+
+.inventory{
+margin-top:20px;
+background:#100e0a;
+border:1px solid #4f3d20;
+border-radius:8px;
+padding:20px;
+}
+
+.inventory h2{
+font-family:Georgia,serif;
+font-size:19px;
+color:#dcb967;
+margin-bottom:15px;
+}
+
+.inventoryGrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.inv{
+background:#17130c;
+border:1px solid #42351d;
+border-radius:6px;
+padding:14px 8px;
+text-align:center;
+}
+
+.invIcon{
+font-size:24px;
+}
+
+.invName{
+font-size:10px;
+color:#95896f;
+margin:6px 0;
+}
+
+.invValue{
+font-size:16px;
+font-weight:bold;
+color:#d5b45f;
+}
+
+.message{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%) translateY(100px);
+background:#17130b;
+border:1px solid #9a7837;
+padding:13px 20px;
+border-radius:7px;
+font-size:12px;
+color:#e2c375;
+opacity:0;
+transition:.3s;
+z-index:999;
+}
+
+.message.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+
+footer{
+text-align:center;
+padding:25px;
+font-size:11px;
+color:#665e4c;
+}
+
+footer strong{
+color:#9c8044;
+}
+
+@media(max-width:600px){
+
+.shop{
+grid-template-columns:1fr 1fr;
+gap:9px;
+}
+
+.item{
+padding:18px 10px;
+}
+
+.itemIcon{
+font-size:34px;
+}
+
+.item h2{
+font-size:15px;
+}
+
+.item p{
+font-size:10px;
+}
+
+.inventoryGrid{
+grid-template-columns:1fr 1fr 1fr;
+}
+
+}
+
+@media(max-width:380px){
+
+.shop{
+grid-template-columns:1fr;
+}
+
+}
+
+</style></head><body><header><div class="top"><div class="logo">
+👑 Ghost Quiz
+</div><div class="coins">
+🪙 <span id="coins">500</span>
+</div><a href="index.html" class="back">
+بازگشت
+</a></div></header><main class="container"><section class="hero"><div class="heroIcon">🏺</div><h1>
+خزانه پارس
+</h1><p>
+سکه‌های خود را خرج کن و ابزارهای کمکی برای آزمون بخر.
+</p></section><section class="shop"><div class="item"><div class="itemIcon">💡</div><h2>
+راهنمایی
+</h2><p>
+یک گزینه اشتباه را از سؤال حذف می‌کند.
+</p><div class="price">
+🪙 50 سکه
+</div><button class="buy" onclick="buyItem('hint',50)">
+خرید
+</button></div><div class="item"><div class="itemIcon">⏱️</div><h2>
+زمان اضافه
+</h2><p>
+۳۰ ثانیه زمان بیشتر برای آزمون.
+</p><div class="price">
+🪙 80 سکه
+</div><button class="buy" onclick="buyItem('time',80)">
+خرید
+</button></div><div class="item"><div class="itemIcon">🎯</div><h2>
+دو شانس
+</h2><p>
+یک فرصت اضافی برای پاسخ دادن.
+</p><div class="price">
+🪙 100 سکه
+</div><button class="buy" onclick="buyItem('chance',100)">
+خرید
+</button></div><div class="item"><div class="itemIcon">🔥</div><h2>
+ضریب XP</h2><p>
+پاداش XP آزمون بعدی را افزایش می‌دهد.
+</p><div class="price">
+🪙 150 سکه
+</div><button class="buy" onclick="buyItem('xpboost',150)">
+خرید
+</button></div><div class="item"><div class="itemIcon">🏛️</div><h2>
+حذف اشتباه</h2><p>
+در سؤال بعدی دو گزینه نادرست حذف می‌شوند.
+</p><div class="price">
+🪙 120 سکه
+</div><button class="buy" onclick="buyItem('eliminate',120)">
+خرید
+</button></div><div class="item"><div class="itemIcon">👑</div><h2>
+شانس طلایی</h2><p>
+برای یک سؤال، یک فرصت اضافه دریافت کن.
+</p><div class="price">
+🪙 200 سکه
+</div><button class="buy" onclick="buyItem('golden',200)">
+خرید
+</button></div></section><section class="inventory"><h2>
+🎒 کیف ابزار
+</h2><div class="inventoryGrid"><div class="inv"><div class="invIcon">💡</div><div class="invName">
+راهنمایی
+</div><div class="invValue" id="hint">
+0
+</div></div><div class="inv"><div class="invIcon">⏱️</div><div class="invName">
+زمان اضافه
+</div><div class="invValue" id="time">
+0
+</div></div><div class="inv"><div class="invIcon">🎯</div><div class="invName">
+دو شانس
+</div><div class="invValue" id="chance">
+0
+</div></div><div class="inv"><div class="invIcon">🔥</div><div class="invName">
+ضریب XP
+</div><div class="invValue" id="xpboost">
+0
+</div></div><div class="inv"><div class="invIcon">🏛️</div><div class="invName">
+حذف اشتباه
+</div><div class="invValue" id="eliminate">
+0
+</div></div><div class="inv"><div class="invIcon">👑</div><div class="invName">
+شانس طلایی
+</div><div class="invValue" id="golden">
+0
+</div></div></div></section></main><div class="message" id="message"></div><footer><strong>Ghost Quiz</strong>
+
+<br><br>
+
+خزانه پارس • میراث • دانش • افتخار
+
+</footer><script>
+
+let coins =
+Number(localStorage.getItem("ghostCoins")) || 500;
+
+document.getElementById("coins")
+.textContent=coins;
+
+
+const items=[
+"hint",
+"time",
+"chance",
+"xpboost",
+"eliminate",
+"golden"
+];
+
+
+function getItem(id){
+
+return Number(
+localStorage.getItem("shop_"+id)
+)||0;
+
+}
+
+
+function setItem(id,value){
+
+localStorage.setItem(
+"shop_"+id,
+value
+);
+
+}
+
+
+function updateInventory(){
+
+items.forEach(id=>{
+
+document.getElementById(id)
+.textContent=getItem(id);
+
+});
+
+}
+
+
+function showMessage(text){
+
+const message=
+document.getElementById("message");
+
+message.textContent=text;
+
+message.classList.add("show");
+
+setTimeout(()=>{
+
+message.classList.remove("show");
+
+},1800);
+
+}
+
+
+function buyItem(id,price){
+
+if(coins<price){
+
+showMessage("❌ سکه کافی نداری!");
+
+return;
+
+}
+
+coins-=price;
+
+setItem(
+id,
+getItem(id)+1
+);
+
+localStorage.setItem(
+"ghostCoins",
+coins
+);
+
+document.getElementById("coins")
+.textContent=coins;
+
+updateInventory();
+
+showMessage("✅ خرید با موفقیت انجام شد!");
+
+}
+
+
+updateInventory();
+
+</script></body>
+</html>
