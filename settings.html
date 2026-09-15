@@ -1,0 +1,461 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>تنظیمات | Ghost Quiz</title><style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    min-height:100vh;
+    color:#f5d77a;
+    background:
+        radial-gradient(circle at top,#3a2a0b 0%,#15110a 35%,#050505 80%);
+}
+
+.container{
+    width:min(94%,700px);
+    margin:auto;
+    padding:20px 0 40px;
+}
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px;
+    border:1px solid #9b7625;
+    border-radius:18px;
+    background:#120f09;
+}
+
+.logo{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.coins{
+    background:#241b0b;
+    border:1px solid #80631f;
+    padding:8px 12px;
+    border-radius:12px;
+}
+
+.hero{
+    text-align:center;
+    padding:30px 10px 20px;
+}
+
+.icon{
+    font-size:55px;
+}
+
+h1{
+    font-size:28px;
+    margin:8px 0;
+}
+
+.subtitle{
+    color:#c9b77d;
+    font-size:14px;
+}
+
+.card{
+    background:linear-gradient(145deg,#1b160d,#090909);
+    border:1px solid #9b7625;
+    border-radius:22px;
+    padding:18px;
+    margin-top:15px;
+}
+
+.section-title{
+    color:#fff0b0;
+    font-weight:bold;
+    padding:10px 5px;
+    border-bottom:1px solid #4e3d19;
+    margin-bottom:5px;
+}
+
+.setting{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:17px 7px;
+    border-bottom:1px solid #29230f;
+}
+
+.setting:last-child{
+    border-bottom:none;
+}
+
+.setting-info{
+    flex:1;
+}
+
+.setting-name{
+    color:#fff0bd;
+    font-size:15px;
+    margin-bottom:6px;
+}
+
+.setting-desc{
+    color:#95835a;
+    font-size:11px;
+    line-height:1.7;
+}
+
+.toggle{
+    width:54px;
+    height:30px;
+    border-radius:30px;
+    background:#40371f;
+    border:1px solid #80631f;
+    position:relative;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+.toggle::after{
+    content:"";
+    position:absolute;
+    width:22px;
+    height:22px;
+    top:3px;
+    right:3px;
+    border-radius:50%;
+    background:#9d8955;
+    transition:.2s;
+}
+
+.toggle.active{
+    background:#705517;
+}
+
+.toggle.active::after{
+    right:27px;
+    background:#f5d77a;
+}
+
+.action{
+    width:100%;
+    border:none;
+    border-radius:13px;
+    padding:14px;
+    margin-top:10px;
+    background:#21190b;
+    border:1px solid #72571d;
+    color:#e7cc77;
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.action:hover{
+    background:#30230d;
+}
+
+.danger{
+    color:#e08c7e;
+    border-color:#70352d;
+}
+
+.message{
+    min-height:25px;
+    text-align:center;
+    color:#e5cd7e;
+    font-size:13px;
+    margin-top:12px;
+}
+
+.home{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    margin-top:20px;
+    padding:14px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#d4af37,#8f6818);
+    color:#160f04;
+    font-weight:bold;
+}
+
+.version{
+    text-align:center;
+    color:#665a3d;
+    font-size:11px;
+    margin-top:18px;
+}
+</style></head><body><div class="container"><div class="header">
+
+    <div class="logo">
+        👻 Ghost Quiz
+    </div>
+
+    <div class="coins">
+        🪙 <span id="coins">0</span>
+    </div>
+
+</div>
+
+<div class="hero">
+
+    <div class="icon">⚙️</div>
+
+    <h1>تنظیمات</h1>
+
+    <div class="subtitle">
+        کنترل و شخصی‌سازی Ghost Quiz
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="section-title">
+        🎮 تنظیمات بازی
+    </div>
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <div class="setting-name">
+                🔊 صدا
+            </div>
+
+            <div class="setting-desc">
+                فعال یا غیرفعال کردن صداهای بازی
+            </div>
+
+        </div>
+
+        <div
+            class="toggle active"
+            id="soundToggle"
+            onclick="toggleSetting('sound')">
+        </div>
+
+    </div>
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <div class="setting-name">
+                📳 لرزش
+            </div>
+
+            <div class="setting-desc">
+                لرزش هنگام پاسخ دادن به سؤال
+            </div>
+
+        </div>
+
+        <div
+            class="toggle active"
+            id="vibrationToggle"
+            onclick="toggleSetting('vibration')">
+        </div>
+
+    </div>
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <div class="setting-name">
+                🌙 حالت شب
+            </div>
+
+            <div class="setting-desc">
+                تم تاریک تاریخی Ghost Quiz
+            </div>
+
+        </div>
+
+        <div
+            class="toggle active"
+            id="darkToggle"
+            onclick="toggleSetting('dark')">
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="section-title">
+        💾 اطلاعات بازی
+    </div>
+
+    <button class="action" onclick="resetStats()">
+        🔄 بازنشانی آمار بازی
+    </button>
+
+    <button
+        class="action danger"
+        onclick="resetAll()">
+
+        🗑️ پاک کردن تمام اطلاعات
+
+    </button>
+
+    <div
+        class="message"
+        id="message">
+    </div>
+
+</div>
+
+<a href="index.html" class="home">
+    🏛️ بازگشت به خانه
+</a>
+
+<div class="version">
+    Ghost Quiz v1.0.0 👻
+    <br>
+    میراث پارس • دانش برای همه
+</div>
+
+</div><script>
+
+let coins =
+    Number(localStorage.getItem("ghostCoins")) || 500;
+
+document.getElementById("coins").textContent = coins;
+
+
+/* وضعیت تنظیمات */
+
+const defaults = {
+    sound:true,
+    vibration:true,
+    dark:true
+};
+
+function getSetting(name){
+
+    const value =
+        localStorage.getItem("setting_" + name);
+
+    if(value === null){
+        return defaults[name];
+    }
+
+    return value === "true";
+}
+
+
+/* نمایش وضعیت */
+
+function updateToggle(name){
+
+    const element =
+        document.getElementById(name + "Toggle");
+
+    if(getSetting(name)){
+        element.classList.add("active");
+    }else{
+        element.classList.remove("active");
+    }
+
+}
+
+updateToggle("sound");
+updateToggle("vibration");
+updateToggle("dark");
+
+
+/* تغییر تنظیمات */
+
+function toggleSetting(name){
+
+    const current =
+        getSetting(name);
+
+    localStorage.setItem(
+        "setting_" + name,
+        String(!current)
+    );
+
+    updateToggle(name);
+
+    showMessage(
+        !current
+        ? "✅ فعال شد"
+        : "⭕ غیرفعال شد"
+    );
+
+}
+
+
+/* پیام */
+
+function showMessage(text){
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent = text;
+
+    setTimeout(()=>{
+        message.textContent = "";
+    },2000);
+
+}
+
+
+/* بازنشانی آمار */
+
+function resetStats(){
+
+    const ok =
+        confirm(
+            "آیا مطمئنی می‌خواهی آمار بازی پاک شود؟"
+        );
+
+    if(!ok) return;
+
+    localStorage.removeItem("ghostXP");
+    localStorage.removeItem("quizRecord");
+    localStorage.removeItem("quizGames");
+    localStorage.removeItem("correctTotal");
+    localStorage.removeItem("quizScore");
+    localStorage.removeItem("quizTotal");
+
+    showMessage(
+        "✅ آمار بازی بازنشانی شد"
+    );
+
+}
+
+
+/* پاک کردن تمام اطلاعات */
+
+function resetAll(){
+
+    const ok =
+        confirm(
+            "⚠️ تمام سکه‌ها، XP، رکوردها و اطلاعات بازی پاک می‌شوند. ادامه می‌دهی؟"
+        );
+
+    if(!ok) return;
+
+    localStorage.clear();
+
+    showMessage(
+        "🗑️ تمام اطلاعات پاک شد"
+    );
+
+    setTimeout(()=>{
+        location.reload();
+    },1200);
+
+}
+
+</script></body>
+</html>
