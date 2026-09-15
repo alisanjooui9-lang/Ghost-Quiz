@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>جدول برترین‌ها | Ghost Quiz</title><style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    min-height:100vh;
+    color:#f5d77a;
+    background:
+        radial-gradient(circle at top,#3a2a0b 0%,#15110a 35%,#050505 80%);
+}
+
+.container{
+    width:min(94%,700px);
+    margin:auto;
+    padding:20px 0 40px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    border:1px solid #9b7625;
+    border-radius:18px;
+    background:rgba(18,14,8,.94);
+    box-shadow:0 0 25px rgba(212,167,62,.12);
+}
+
+.logo{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.coins{
+    background:#241b0b;
+    border:1px solid #9b7625;
+    border-radius:12px;
+    padding:8px 12px;
+}
+
+.hero{
+    text-align:center;
+    padding:30px 10px 20px;
+}
+
+.crown{
+    font-size:55px;
+}
+
+h1{
+    font-size:28px;
+    margin:8px 0;
+}
+
+.subtitle{
+    color:#c9b77d;
+    font-size:14px;
+}
+
+.board{
+    margin-top:15px;
+    background:linear-gradient(145deg,#1b160d,#090909);
+    border:1px solid #9b7625;
+    border-radius:22px;
+    padding:18px;
+    box-shadow:0 0 30px rgba(212,167,62,.1);
+}
+
+.top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px;
+    margin-bottom:10px;
+    border-radius:15px;
+    background:#21190b;
+    border:1px solid #72571d;
+}
+
+.top-title{
+    color:#fff0b0;
+    font-weight:bold;
+}
+
+.sort{
+    color:#bda96d;
+    font-size:12px;
+}
+
+.player{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    margin:10px 0;
+    border:1px solid #57451b;
+    border-radius:16px;
+    background:#12100b;
+}
+
+.player.first{
+    border-color:#c59b35;
+    background:linear-gradient(90deg,#30230b,#15120b);
+}
+
+.rank{
+    width:35px;
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#29200e;
+    border:1px solid #85651f;
+    font-size:22px;
+}
+
+.info{
+    flex:1;
+}
+
+.name{
+    color:#fff0bd;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.title{
+    color:#aa955b;
+    font-size:11px;
+}
+
+.score{
+    text-align:left;
+}
+
+.score strong{
+    display:block;
+    color:#f5d77a;
+    font-size:17px;
+}
+
+.score span{
+    color:#9d8955;
+    font-size:11px;
+}
+
+.my-card{
+    margin-top:18px;
+    padding:17px;
+    border-radius:17px;
+    border:1px solid #b18a2d;
+    background:#241b0b;
+}
+
+.my-title{
+    color:#fff0b0;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.my-row{
+    display:flex;
+    justify-content:space-between;
+    color:#cdbb83;
+    line-height:2;
+}
+
+.btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    margin-top:20px;
+    padding:14px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#d4af37,#8f6818);
+    color:#160f04;
+    font-weight:bold;
+}
+
+.note{
+    text-align:center;
+    color:#8e7d50;
+    font-size:11px;
+    margin-top:15px;
+    line-height:1.8;
+}
+</style></head><body><div class="container"><div class="header">
+    <div class="logo">👻 Ghost Quiz</div>
+
+    <div class="coins">
+        🪙 <span id="coins">0</span>
+    </div>
+</div>
+
+<div class="hero">
+
+    <div class="crown">👑</div>
+
+    <h1>جدول برترین‌ها</h1>
+
+    <div class="subtitle">
+        فرمانروایان دانش Ghost Quiz
+    </div>
+
+</div>
+
+<div class="board">
+
+    <div class="top">
+
+        <div class="top-title">
+            🏛️ برترین پژوهشگران
+        </div>
+
+        <div class="sort">
+            بر اساس امتیاز
+        </div>
+
+    </div>
+
+    <div class="player first">
+
+        <div class="rank">🥇</div>
+
+        <div class="avatar">👑</div>
+
+        <div class="info">
+            <div class="name">کوروش پژوهشگر</div>
+            <div class="title">تاریخ‌دان بزرگ</div>
+        </div>
+
+        <div class="score">
+            <strong>980</strong>
+            <span>امتیاز</span>
+        </div>
+
+    </div>
+
+    <div class="player">
+
+        <div class="rank">🥈</div>
+
+        <div class="avatar">🏛️</div>
+
+        <div class="info">
+            <div class="name">پارسیان</div>
+            <div class="title">پژوهشگر تاریخ</div>
+        </div>
+
+        <div class="score">
+            <strong>850</strong>
+            <span>امتیاز</span>
+        </div>
+
+    </div>
+
+    <div class="player">
+
+        <div class="rank">🥉</div>
+
+        <div class="avatar">📜</div>
+
+        <div class="info">
+            <div class="name">کاربر نمونه</div>
+            <div class="title">جوینده دانش</div>
+        </div>
+
+        <div class="score">
+            <strong>760</strong>
+            <span>امتیاز</span>
+        </div>
+
+    </div>
+
+    <div class="player">
+
+        <div class="rank">4</div>
+
+        <div class="avatar">🛡️</div>
+
+        <div class="info">
+            <div class="name">دانش‌پژوه</div>
+            <div class="title">شاگرد تاریخ</div>
+        </div>
+
+        <div class="score">
+            <strong>690</strong>
+            <span>امتیاز</span>
+        </div>
+
+    </div>
+
+    <div class="player">
+
+        <div class="rank">5</div>
+
+        <div class="avatar">🦁</div>
+
+        <div class="info">
+            <div class="name">شیر پارس</div>
+            <div class="title">سرباز تاریخ</div>
+        </div>
+
+        <div class="score">
+            <strong>610</strong>
+            <span>امتیاز</span>
+        </div>
+
+    </div>
+
+    <div class="my-card">
+
+        <div class="my-title">
+            👤 آمار شما
+        </div>
+
+        <div class="my-row">
+            <span>⭐ XP</span>
+            <span id="myXP">0</span>
+        </div>
+
+        <div class="my-row">
+            <span>🏆 بهترین رکورد</span>
+            <span id="myRecord">0 / 10</span>
+        </div>
+
+        <div class="my-row">
+            <span>🪙 سکه</span>
+            <span id="myCoins">0</span>
+        </div>
+
+    </div>
+
+</div>
+
+<a href="index.html" class="btn">
+    🏛️ بازگشت به خانه
+</a>
+
+<div class="note">
+    رتبه‌بندی فعلاً روی دستگاه شما ذخیره می‌شود.
+    <br>
+    در نسخه‌های بعدی جدول آنلاین هم اضافه می‌شود.
+</div>
+
+</div><script>
+
+const coins =
+    Number(localStorage.getItem("ghostCoins")) || 500;
+
+const xp =
+    Number(localStorage.getItem("ghostXP")) || 0;
+
+const record =
+    Number(localStorage.getItem("quizRecord")) || 0;
+
+document.getElementById("coins").textContent = coins;
+
+document.getElementById("myXP").textContent = xp;
+
+document.getElementById("myRecord").textContent =
+    record + " / 10";
+
+document.getElementById("myCoins").textContent =
+    coins;
+
+</script></body>
+              </html>
